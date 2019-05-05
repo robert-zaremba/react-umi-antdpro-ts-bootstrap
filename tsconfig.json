@@ -29,7 +29,7 @@
 
     "noUnusedLocals": true,
     "allowJs": true,
-    // "experimentalDecorators": true,
+    "experimentalDecorators": true,
 
     "paths": {
       "@/*": ["./src/*"]

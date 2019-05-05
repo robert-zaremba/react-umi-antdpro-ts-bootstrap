@@ -13,7 +13,7 @@ const { Header } = Layout
 class HeaderView extends PureComponent {
   state = {
     visible: true
-  };
+  }
 
   static getDerivedStateFromProps (props, state) {
     if (!props.autoHideHeader && !state.visible) {
@@ -39,7 +39,7 @@ class HeaderView extends PureComponent {
       return '100%'
     }
     return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)'
-  };
+  }
 
   handleNoticeClear = type => {
     message.success(
@@ -52,7 +52,7 @@ class HeaderView extends PureComponent {
       type: 'global/clearNotices',
       payload: type
     })
-  };
+  }
 
   handleMenuClick = ({ key }) => {
     const { dispatch } = this.props
@@ -73,7 +73,7 @@ class HeaderView extends PureComponent {
         type: 'login/logout'
       })
     }
-  };
+  }
 
   handleNoticeVisibleChange = visible => {
     if (visible) {
@@ -82,7 +82,7 @@ class HeaderView extends PureComponent {
         type: 'global/fetchNotices'
       })
     }
-  };
+  }
 
   handScroll = () => {
     const { autoHideHeader } = this.props
@@ -111,7 +111,7 @@ class HeaderView extends PureComponent {
         this.ticking = false
       })
     }
-  };
+  }
 
   render () {
     const { isMobile, handleMenuCollapse, setting } = this.props
@@ -124,7 +124,7 @@ class HeaderView extends PureComponent {
         {isTop && !isMobile ? (
           <TopNavHeader
             theme={navTheme}
-            mode="horizontal"
+            mode='horizontal'
             onCollapse={handleMenuCollapse}
             onNoticeClear={this.handleNoticeClear}
             onMenuClick={this.handleMenuClick}
@@ -143,7 +143,7 @@ class HeaderView extends PureComponent {
       </Header>
     ) : null
     return (
-      <Animate component="" transitionName="fade">
+      <Animate component='' transitionName='fade'>
         {HeaderDom}
       </Animate>
     )

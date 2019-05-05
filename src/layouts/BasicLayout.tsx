@@ -89,7 +89,7 @@ class BasicLayout extends React.PureComponent {
   matchParamsPath = (pathname, breadcrumbNameMap) => {
     const pathKey = Object.keys(breadcrumbNameMap).find(key => pathToRegexp(key).test(pathname))
     return breadcrumbNameMap[pathKey]
-  };
+  }
 
   getRouterAuthority = (pathname, routeData) => {
     let routeAuthority = ['noAuthority']
@@ -105,7 +105,7 @@ class BasicLayout extends React.PureComponent {
       return routeAuthority
     }
     return getAuthority(pathname, routeData)
-  };
+  }
 
   getPageTitle = (pathname, breadcrumbNameMap) => {
     const currRouterData = this.matchParamsPath(pathname, breadcrumbNameMap)
@@ -119,7 +119,7 @@ class BasicLayout extends React.PureComponent {
     })
 
     return `${pageName} - Ant Design Pro`
-  };
+  }
 
   getLayoutStyle = () => {
     const { fixSiderbar, isMobile, collapsed, layout } = this.props
@@ -129,7 +129,7 @@ class BasicLayout extends React.PureComponent {
       }
     }
     return null
-  };
+  }
 
   handleMenuCollapse = collapsed => {
     const { dispatch } = this.props
@@ -137,7 +137,7 @@ class BasicLayout extends React.PureComponent {
       type: 'global/changeLayoutCollapsed',
       payload: collapsed
     })
-  };
+  }
 
   render () {
     const {
@@ -212,7 +212,7 @@ export default connect(({ global, setting, menu }) => ({
   breadcrumbNameMap: menu.breadcrumbNameMap,
   ...setting
 }))(props => (
-  <Media query="(max-width: 599px)">
+  <Media query='(max-width: 599px)'>
     {isMobile => <BasicLayout {...props} isMobile={isMobile} />}
   </Media>
 ))
