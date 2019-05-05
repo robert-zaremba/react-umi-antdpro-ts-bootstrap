@@ -1,6 +1,6 @@
-import globalHeader from './pt-BR/globalHeader';
-import menu from './pt-BR/menu';
-import settings from './pt-BR/settings';
+import globalHeader from './pt-BR/globalHeader'
+import menu from './pt-BR/menu'
+import settings from './pt-BR/settings'
 
 export default {
   'navBar.lang': 'Idiomas',
@@ -10,5 +10,5 @@ export default {
   'app.home.introduce': 'introduzir',
   ...globalHeader,
   ...menu,
-  ...settings,
-};
+  ...settings
+}

@@ -5,5 +5,5 @@ export default {
   'menu.account.center': '個人中心',
   'menu.account.settings': '個人設置',
   'menu.account.trigger': '觸發報錯',
-  'menu.account.logout': '退出登錄',
-};
+  'menu.account.logout': '退出登錄'
+}

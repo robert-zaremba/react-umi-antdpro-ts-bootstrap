@@ -1,13 +1,13 @@
-import { getFlatMenuKeys } from './SiderMenuUtils';
+import { getFlatMenuKeys } from './SiderMenuUtils'
 
 const menu = [
   {
     path: '/dashboard',
     children: [
       {
-        path: '/dashboard/name',
-      },
-    ],
+        path: '/dashboard/name'
+      }
+    ]
   },
   {
     path: '/userinfo',
@@ -16,15 +16,15 @@ const menu = [
         path: '/userinfo/:id',
         children: [
           {
-            path: '/userinfo/:id/info',
-          },
-        ],
-      },
-    ],
-  },
-];
+            path: '/userinfo/:id/info'
+          }
+        ]
+      }
+    ]
+  }
+]
 
-const flatMenuKeys = getFlatMenuKeys(menu);
+const flatMenuKeys = getFlatMenuKeys(menu)
 
 describe('test convert nested menu to flat menu', () => {
   it('simple menu', () => {
@@ -33,7 +33,7 @@ describe('test convert nested menu to flat menu', () => {
       '/dashboard/name',
       '/userinfo',
       '/userinfo/:id',
-      '/userinfo/:id/info',
-    ]);
-  });
-});
+      '/userinfo/:id/info'
+    ])
+  })
+})

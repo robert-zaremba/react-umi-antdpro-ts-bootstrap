@@ -1,5 +1,5 @@
-import pathToRegexp from 'path-to-regexp';
-import { urlToList } from '../_utils/pathTools';
+import pathToRegexp from 'path-to-regexp'
+import { urlToList } from '../_utils/pathTools'
 
 /**
  * Recursively flatten the data
@@ -7,23 +7,23 @@ import { urlToList } from '../_utils/pathTools';
  * @param  menus
  */
 export const getFlatMenuKeys = menuData => {
-  let keys = [];
+  let keys = []
   menuData.forEach(item => {
-    keys.push(item.path);
+    keys.push(item.path)
     if (item.children) {
-      keys = keys.concat(getFlatMenuKeys(item.children));
+      keys = keys.concat(getFlatMenuKeys(item.children))
     }
-  });
-  return keys;
-};
+  })
+  return keys
+}
 
 export const getMenuMatches = (flatMenuKeys, path) =>
   flatMenuKeys.filter(item => {
     if (item) {
-      return pathToRegexp(item).test(path);
+      return pathToRegexp(item).test(path)
     }
-    return false;
-  });
+    return false
+  })
 /**
  * 获得菜单子节点
  * @memberof SiderMenu
@@ -31,9 +31,9 @@ export const getMenuMatches = (flatMenuKeys, path) =>
 export const getDefaultCollapsedSubMenus = props => {
   const {
     location: { pathname },
-    flatMenuKeys,
-  } = props;
+    flatMenuKeys
+  } = props
   return urlToList(pathname)
     .map(item => getMenuMatches(flatMenuKeys, item)[0])
-    .filter(item => item);
-};
+    .filter(item => item)
+}

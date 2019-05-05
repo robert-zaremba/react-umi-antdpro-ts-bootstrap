@@ -1,30 +1,30 @@
-import React, { PureComponent } from 'react';
-import Link from 'umi/link';
-import RightContent from '../GlobalHeader/RightContent';
-import BaseMenu from '../SiderMenu/BaseMenu';
-import { getFlatMenuKeys } from '../SiderMenu/SiderMenuUtils';
-import styles from './index.less';
+import React, { PureComponent } from 'react'
+import Link from 'umi/link'
+import RightContent from '../GlobalHeader/RightContent'
+import BaseMenu from '../SiderMenu/BaseMenu'
+import { getFlatMenuKeys } from '../SiderMenu/SiderMenuUtils'
+import styles from './index.less'
 
 export default class TopNavHeader extends PureComponent {
   state = {
-    maxWidth: undefined,
+    maxWidth: undefined
   };
 
-  static getDerivedStateFromProps(props) {
+  static getDerivedStateFromProps (props) {
     return {
-      maxWidth: (props.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 165 - 40,
-    };
+      maxWidth: (props.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 165 - 40
+    }
   }
 
-  render() {
-    const { theme, contentWidth, menuData, logo } = this.props;
-    const { maxWidth } = this.state;
-    const flatMenuKeys = getFlatMenuKeys(menuData);
+  render () {
+    const { theme, contentWidth, menuData, logo } = this.props
+    const { maxWidth } = this.state
+    const flatMenuKeys = getFlatMenuKeys(menuData)
     return (
       <div className={`${styles.head} ${theme === 'light' ? styles.light : ''}`}>
         <div
           ref={ref => {
-            this.maim = ref;
+            this.maim = ref
           }}
           className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`}
         >
@@ -37,7 +37,7 @@ export default class TopNavHeader extends PureComponent {
             </div>
             <div
               style={{
-                maxWidth,
+                maxWidth
               }}
             >
               <BaseMenu {...this.props} flatMenuKeys={flatMenuKeys} className={styles.menu} />
@@ -46,6 +46,6 @@ export default class TopNavHeader extends PureComponent {
           <RightContent {...this.props} />
         </div>
       </div>
-    );
+    )
   }
 }

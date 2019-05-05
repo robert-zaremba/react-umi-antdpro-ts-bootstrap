@@ -1,8 +1,8 @@
 // ref: https://umijs.org/config/
 import { IConfig } from 'umi-types'
-import { primaryColor } from '../src/defaultSettings';
+import { primaryColor } from '../src/defaultSettings'
 
-const config: IConfig {
+const config: IConfig = {
   plugins: [
     [
       'umi-plugin-react',
@@ -10,17 +10,17 @@ const config: IConfig {
       {
         antd: true,
         dva: {
-          hmr: true,  // hot module reload
+          hmr: true  // hot module reload
         },
         locale: {
           enable: true, // default false
           default: 'en-US',
-          baseNavigator: true, // default true, when it is true, will use `navigator.language` overwrite default
+          baseNavigator: true // default true, when it is true, will use `navigator.language` overwrite default
         },
         dynamicImport: {
-          loadingComponent: './components/PageLoading/index',
-        },
-      },
+          loadingComponent: './components/PageLoading/index'
+        }
+      }
     ],
     [
       'umi-plugin-pro-block',
@@ -28,9 +28,9 @@ const config: IConfig {
         moveMock: false,
         moveService: false,
         modifyRequest: true,
-        autoAddMenu: true,
-      },
-    ],
+        autoAddMenu: true
+      }
+    ]
   ],
   // https://umijs.org/config/#targets, the config is merged with the default one.
   targets: {},
@@ -39,7 +39,7 @@ const config: IConfig {
     {
       path: '/user',
       component: '../layouts/UserLayout',
-      routes: [{ path: '/user', component: './Welcome' }],
+      routes: [{ path: '/user', component: './Welcome' }]
     },
     {
       path: '/',
@@ -51,15 +51,15 @@ const config: IConfig {
           path: '/welcome',
           name: 'welcome',
           icon: 'smile',
-          component: './Welcome',
+          component: './Welcome'
         },
         {
           path: 'https://github.com/umijs/umi-blocks/tree/master/ant-design-pro',
           name: 'more-blocks',
-          icon: 'block',
-        },
-      ],
-    },
+          icon: 'block'
+        }
+      ]
+    }
   ],
   disableRedirectHoist: true,
 
@@ -67,20 +67,20 @@ const config: IConfig {
    * webpack config
    */
   define: {
-    APP_TYPE: process.env.APP_TYPE || '',
+    APP_TYPE: process.env.APP_TYPE || ''
   },
   // Theme for antd
   // https://ant.design/docs/react/customize-theme-cn
   theme: {
-    'primary-color': primaryColor,
+    'primary-color': primaryColor
   },
   externals: {
-    '@antv/data-set': 'DataSet',
+    '@antv/data-set': 'DataSet'
   },
   ignoreMomentLocale: true,
   lessLoaderOptions: {
-    javascriptEnabled: true,
-  },
+    javascriptEnabled: true
+  }
 }
 
 export default config

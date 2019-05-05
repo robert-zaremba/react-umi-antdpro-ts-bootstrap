@@ -1,35 +1,35 @@
-import React, { Fragment } from 'react';
-import { formatMessage } from 'umi/locale';
-import Link from 'umi/link';
-import { Icon } from 'antd';
-import { GlobalFooter } from 'ant-design-pro';
-import SelectLang from '@/components/SelectLang';
-import styles from './UserLayout.less';
-import logo from '../assets/logo.svg';
+import React, { Fragment } from 'react'
+import { formatMessage } from 'umi/locale'
+import Link from 'umi/link'
+import { Icon } from 'antd'
+import { GlobalFooter } from 'ant-design-pro'
+import SelectLang from '@/components/SelectLang'
+import styles from './UserLayout.less'
+import logo from '../assets/logo.svg'
 
 const links = [
   {
     key: 'help',
     title: formatMessage({ id: 'layout.user.link.help' }),
-    href: '',
+    href: ''
   },
   {
     key: 'privacy',
     title: formatMessage({ id: 'layout.user.link.privacy' }),
-    href: '',
+    href: ''
   },
   {
     key: 'terms',
     title: formatMessage({ id: 'layout.user.link.terms' }),
-    href: '',
-  },
-];
+    href: ''
+  }
+]
 
 const copyright = (
   <Fragment>
     Copyright <Icon type="copyright" /> 2018 蚂蚁金服体验技术部出品
   </Fragment>
-);
+)
 
 class UserLayout extends React.PureComponent {
   // @TODO title
@@ -43,8 +43,8 @@ class UserLayout extends React.PureComponent {
   //   return title;
   // }
 
-  render() {
-    const { children } = this.props;
+  render () {
+    const { children } = this.props
     return (
       // @TODO <DocumentTitle title={this.getPageTitle()}>
       <div className={styles.container}>
@@ -65,8 +65,8 @@ class UserLayout extends React.PureComponent {
         </div>
         <GlobalFooter links={links} copyright={copyright} />
       </div>
-    );
+    )
   }
 }
 
-export default UserLayout;
+export default UserLayout

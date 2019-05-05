@@ -12,5 +12,5 @@ export default {
   'component.globalHeader.event.empty': 'You have viewed all events.',
   'component.noticeIcon.clear': 'Clear',
   'component.noticeIcon.cleared': 'Cleared',
-  'component.noticeIcon.empty': 'No notifications',
-};
+  'component.noticeIcon.empty': 'No notifications'
+}

@@ -5,14 +5,14 @@ const getNotices = (req, res) =>
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',
       title: '你收到了 14 份新周报',
       datetime: '2017-08-09',
-      type: 'notification',
+      type: 'notification'
     },
     {
       id: '000000002',
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/OKJXDXrmkNshAMvwtvhu.png',
       title: '你推荐的 曲妮妮 已通过第三轮面试',
       datetime: '2017-08-08',
-      type: 'notification',
+      type: 'notification'
     },
     {
       id: '000000003',
@@ -20,21 +20,21 @@ const getNotices = (req, res) =>
       title: '这种模板可以区分多种通知类型',
       datetime: '2017-08-07',
       read: true,
-      type: 'notification',
+      type: 'notification'
     },
     {
       id: '000000004',
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/GvqBnKhFgObvnSGkDsje.png',
       title: '左侧图标用于区分不同的类型',
       datetime: '2017-08-07',
-      type: 'notification',
+      type: 'notification'
     },
     {
       id: '000000005',
       avatar: 'https://gw.alipayobjects.com/zos/rmsportal/ThXAXghbEsBCCSDihZxY.png',
       title: '内容不要超过两行字，超出时自动截断',
       datetime: '2017-08-07',
-      type: 'notification',
+      type: 'notification'
     },
     {
       id: '000000006',
@@ -43,7 +43,7 @@ const getNotices = (req, res) =>
       description: '描述信息描述信息描述信息',
       datetime: '2017-08-07',
       type: 'message',
-      clickClose: true,
+      clickClose: true
     },
     {
       id: '000000007',
@@ -52,7 +52,7 @@ const getNotices = (req, res) =>
       description: '这种模板用于提醒谁与你发生了互动，左侧放『谁』的头像',
       datetime: '2017-08-07',
       type: 'message',
-      clickClose: true,
+      clickClose: true
     },
     {
       id: '000000008',
@@ -61,7 +61,7 @@ const getNotices = (req, res) =>
       description: '这种模板用于提醒谁与你发生了互动，左侧放『谁』的头像',
       datetime: '2017-08-07',
       type: 'message',
-      clickClose: true,
+      clickClose: true
     },
     {
       id: '000000009',
@@ -69,7 +69,7 @@ const getNotices = (req, res) =>
       description: '任务需要在 2017-01-12 20:00 前启动',
       extra: '未开始',
       status: 'todo',
-      type: 'event',
+      type: 'event'
     },
     {
       id: '000000010',
@@ -77,7 +77,7 @@ const getNotices = (req, res) =>
       description: '冠霖提交于 2017-01-06，需在 2017-01-07 前完成代码变更任务',
       extra: '马上到期',
       status: 'urgent',
-      type: 'event',
+      type: 'event'
     },
     {
       id: '000000011',
@@ -85,7 +85,7 @@ const getNotices = (req, res) =>
       description: '指派竹尔于 2017-01-09 前完成更新并发布',
       extra: '已耗时 8 天',
       status: 'doing',
-      type: 'event',
+      type: 'event'
     },
     {
       id: '000000012',
@@ -93,10 +93,10 @@ const getNotices = (req, res) =>
       description: '冠霖提交于 2017-01-06，需在 2017-01-07 前完成代码变更任务',
       extra: '进行中',
       status: 'processing',
-      type: 'event',
-    },
-  ]);
+      type: 'event'
+    }
+  ])
 
 export default {
-  'GET /api/notices': getNotices,
-};
+  'GET /api/notices': getNotices
+}

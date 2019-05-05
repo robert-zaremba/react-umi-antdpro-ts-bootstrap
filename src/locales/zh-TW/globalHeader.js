@@ -12,5 +12,5 @@ export default {
   'component.globalHeader.event.empty': '妳已完成所有待辦',
   'component.noticeIcon.clear': '清空',
   'component.noticeIcon.cleared': '清空了',
-  'component.noticeIcon.empty': '暫無數據',
-};
+  'component.noticeIcon.empty': '暫無數據'
+}

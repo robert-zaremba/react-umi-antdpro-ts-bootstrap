@@ -1,6 +1,6 @@
 {
   "defaultSeverity": "warning",
-  "extends": ["tslint-config-standard", "tslint-react", "tslint-react-a11y"],
+  "extends": ["tslint-config-standard", "tslint-react", "tslint-react-hooks", "tslint-react-a11y"],
   // maybe add to extends: "tslint-config-prettier"
   "linterOptions": {
     "exclude": [
@@ -10,10 +10,11 @@
     ]
   },
   "rules": {
+    "indent": ["error", 2, {"FunctionDeclaration": {"parameters": "first"}}],
     "max-line-length": {
       "options": [96]
     },
-    "indent": ["error", 2, {"FunctionDeclaration": {"parameters": "first"}}],
+    "react-hooks-nesting": "error",
     "ter-indent": ["error", 2, {"FunctionDeclaration": {"parameters": "first"}}]
 
     // "await-promise": [true, "Bluebird"],

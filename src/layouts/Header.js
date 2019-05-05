@@ -1,124 +1,124 @@
-import React, { PureComponent } from 'react';
-import { formatMessage } from 'umi/locale';
-import { Layout, message } from 'antd';
-import Animate from 'rc-animate';
-import { connect } from 'dva';
-import router from 'umi/router';
-import GlobalHeader from '@/components/GlobalHeader';
-import TopNavHeader from '@/components/TopNavHeader';
-import styles from './Header.less';
+import React, { PureComponent } from 'react'
+import { formatMessage } from 'umi/locale'
+import { Layout, message } from 'antd'
+import Animate from 'rc-animate'
+import { connect } from 'dva'
+import router from 'umi/router'
+import GlobalHeader from '@/components/GlobalHeader'
+import TopNavHeader from '@/components/TopNavHeader'
+import styles from './Header.less'
 
-const { Header } = Layout;
+const { Header } = Layout
 
 class HeaderView extends PureComponent {
   state = {
-    visible: true,
+    visible: true
   };
 
-  static getDerivedStateFromProps(props, state) {
+  static getDerivedStateFromProps (props, state) {
     if (!props.autoHideHeader && !state.visible) {
       return {
-        visible: true,
-      };
+        visible: true
+      }
     }
-    return null;
+    return null
   }
 
-  componentDidMount() {
-    document.addEventListener('scroll', this.handScroll, { passive: true });
+  componentDidMount () {
+    document.addEventListener('scroll', this.handScroll, { passive: true })
   }
 
-  componentWillUnmount() {
-    document.removeEventListener('scroll', this.handScroll);
+  componentWillUnmount () {
+    document.removeEventListener('scroll', this.handScroll)
   }
 
   getHeadWidth = () => {
-    const { isMobile, collapsed, setting } = this.props;
-    const { fixedHeader, layout } = setting;
+    const { isMobile, collapsed, setting } = this.props
+    const { fixedHeader, layout } = setting
     if (isMobile || !fixedHeader || layout === 'topmenu') {
-      return '100%';
+      return '100%'
     }
-    return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)';
+    return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)'
   };
 
   handleNoticeClear = type => {
     message.success(
       `${formatMessage({ id: 'component.noticeIcon.cleared' })} ${formatMessage({
-        id: `component.globalHeader.${type}`,
+        id: `component.globalHeader.${type}`
       })}`
-    );
-    const { dispatch } = this.props;
+    )
+    const { dispatch } = this.props
     dispatch({
       type: 'global/clearNotices',
-      payload: type,
-    });
+      payload: type
+    })
   };
 
   handleMenuClick = ({ key }) => {
-    const { dispatch } = this.props;
+    const { dispatch } = this.props
     if (key === 'userCenter') {
-      router.push('/account/center');
-      return;
+      router.push('/account/center')
+      return
     }
     if (key === 'triggerError') {
-      router.push('/exception/trigger');
-      return;
+      router.push('/exception/trigger')
+      return
     }
     if (key === 'userinfo') {
-      router.push('/account/settings/base');
-      return;
+      router.push('/account/settings/base')
+      return
     }
     if (key === 'logout') {
       dispatch({
-        type: 'login/logout',
-      });
+        type: 'login/logout'
+      })
     }
   };
 
   handleNoticeVisibleChange = visible => {
     if (visible) {
-      const { dispatch } = this.props;
+      const { dispatch } = this.props
       dispatch({
-        type: 'global/fetchNotices',
-      });
+        type: 'global/fetchNotices'
+      })
     }
   };
 
   handScroll = () => {
-    const { autoHideHeader } = this.props;
-    const { visible } = this.state;
+    const { autoHideHeader } = this.props
+    const { visible } = this.state
     if (!autoHideHeader) {
-      return;
+      return
     }
-    const scrollTop = document.body.scrollTop + document.documentElement.scrollTop;
+    const scrollTop = document.body.scrollTop + document.documentElement.scrollTop
     if (!this.ticking) {
-      this.ticking = true;
+      this.ticking = true
       requestAnimationFrame(() => {
         if (this.oldScrollTop > scrollTop) {
           this.setState({
-            visible: true,
-          });
+            visible: true
+          })
         } else if (scrollTop > 300 && visible) {
           this.setState({
-            visible: false,
-          });
+            visible: false
+          })
         } else if (scrollTop < 300 && !visible) {
           this.setState({
-            visible: true,
-          });
+            visible: true
+          })
         }
-        this.oldScrollTop = scrollTop;
-        this.ticking = false;
-      });
+        this.oldScrollTop = scrollTop
+        this.ticking = false
+      })
     }
   };
 
-  render() {
-    const { isMobile, handleMenuCollapse, setting } = this.props;
-    const { navTheme, layout, fixedHeader } = setting;
-    const { visible } = this.state;
-    const isTop = layout === 'topmenu';
-    const width = this.getHeadWidth();
+  render () {
+    const { isMobile, handleMenuCollapse, setting } = this.props
+    const { navTheme, layout, fixedHeader } = setting
+    const { visible } = this.state
+    const isTop = layout === 'topmenu'
+    const width = this.getHeadWidth()
     const HeaderDom = visible ? (
       <Header style={{ padding: 0, width }} className={fixedHeader ? styles.fixedHeader : ''}>
         {isTop && !isMobile ? (
@@ -141,12 +141,12 @@ class HeaderView extends PureComponent {
           />
         )}
       </Header>
-    ) : null;
+    ) : null
     return (
       <Animate component="" transitionName="fade">
         {HeaderDom}
       </Animate>
-    );
+    )
   }
 }
 
@@ -155,5 +155,5 @@ export default connect(({ user, global, setting, loading }) => ({
   collapsed: global.collapsed,
   fetchingNotices: loading.effects['global/fetchNotices'],
   notices: global.notices,
-  setting,
-}))(HeaderView);
+  setting
+}))(HeaderView)
