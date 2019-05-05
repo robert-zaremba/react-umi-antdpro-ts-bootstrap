@@ -11,24 +11,23 @@ export default class GlobalHeader extends PureComponent {
   }
   /* eslint-disable*/
   @Debounce(600)
-  triggerResizeEvent() {
+  triggerResizeEvent () {
     // eslint-disable-line
-    const event = document.createEvent('HTMLEvents');
-    event.initEvent('resize', true, false);
-    window.dispatchEvent(event);
+    const event = document.createEvent('HTMLEvents')
+    event.initEvent('resize', true, false)
+    window.dispatchEvent(event)
   }
   toggle = () => {
-    const { collapsed, onCollapse } = this.props;
-    onCollapse(!collapsed);
-    this.triggerResizeEvent();
-  };
-  render() {
-    const { collapsed, isMobile, logo } = this.props;
+    this.props.onCollapse(!this.props.collapsed)
+    this.triggerResizeEvent()
+  }
+  render () {
+    const { collapsed, isMobile, logo } = this.props
     return (
       <div className={styles.header}>
         {isMobile && (
-          <Link to="/" className={styles.logo} key="logo">
-            <img src={logo} alt="logo" width="32" />
+          <Link to='/' className={styles.logo} key='logo'>
+            <img src={logo} alt='logo' width='32' />
           </Link>
         )}
         <span className={styles.trigger} onClick={this.toggle}>
@@ -36,6 +35,6 @@ export default class GlobalHeader extends PureComponent {
         </span>
         <RightContent {...this.props} />
       </div>
-    );
+    )
   }
 }

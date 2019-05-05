@@ -15,7 +15,10 @@
       "options": [96]
     },
     "react-hooks-nesting": "error",
-    "ter-indent": ["error", 2, {"FunctionDeclaration": {"parameters": "first"}}]
+    "ter-indent": ["error", 2, {"FunctionDeclaration": {"parameters": "first"}}],
+    "jsx-no-multiline-js": false,
+
+    "react-a11y-event-has-role": false
 
     // "await-promise": [true, "Bluebird"],
     // "interface-name": false,
