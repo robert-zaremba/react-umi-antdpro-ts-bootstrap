@@ -1,11 +1,25 @@
 {
-  "extends": ["tslint:latest", "tslint-react", "tslint-config-prettier"],
+  "defaultSeverity": "warning",
+  "extends": ["tslint-config-standard", "tslint-react", "tslint-react-a11y"],
+  // maybe add to extends: "tslint-config-prettier"
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**",
+      "src/**/*.js",
+      "src/serviceWorker.ts"
+    ]
+  },
   "rules": {
-    "no-var-requires": false,
-    "no-submodule-imports": false,
-    "object-literal-sort-keys": false,
-    "jsx-no-lambda": false,
-    "no-implicit-dependencies": false,
-    "no-console": false
+    "max-line-length": {
+      "options": [96]
+    },
+    "indent": ["error", 2, {"FunctionDeclaration": {"parameters": "first"}}],
+    "ter-indent": ["error", 2, {"FunctionDeclaration": {"parameters": "first"}}]
+
+    // "await-promise": [true, "Bluebird"],
+    // "interface-name": false,
+    // "ordered-imports": false,
+    // "object-literal-sort-keys": false,
+    // "no-consecutive-blank-lines": false
   }
 }

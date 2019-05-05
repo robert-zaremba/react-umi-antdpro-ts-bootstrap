@@ -1,21 +1,20 @@
 // ref: https://umijs.org/config/
+import { IConfig } from 'umi-types'
 import { primaryColor } from '../src/defaultSettings';
 
-export default {
+const config: IConfig {
   plugins: [
     [
       'umi-plugin-react',
+      // https://umijs.org/plugin/umi-plugin-react.html#title
       {
         antd: true,
         dva: {
-          hmr: true,
-        },
-        targets: {
-          ie: 11,
+          hmr: true,  // hot module reload
         },
         locale: {
           enable: true, // default false
-          default: 'zh-CN', // default zh-CN
+          default: 'en-US',
           baseNavigator: true, // default true, when it is true, will use `navigator.language` overwrite default
         },
         dynamicImport: {
@@ -33,13 +32,9 @@ export default {
       },
     ],
   ],
-  targets: {
-    ie: 11,
-  },
+  // https://umijs.org/config/#targets, the config is merged with the default one.
+  targets: {},
 
-  /**
-   * 路由相关配置
-   */
   routes: [
     {
       path: '/user',
@@ -69,7 +64,7 @@ export default {
   disableRedirectHoist: true,
 
   /**
-   * webpack 相关配置
+   * webpack config
    */
   define: {
     APP_TYPE: process.env.APP_TYPE || '',
@@ -86,4 +81,6 @@ export default {
   lessLoaderOptions: {
     javascriptEnabled: true,
   },
-};
+}
+
+export default config

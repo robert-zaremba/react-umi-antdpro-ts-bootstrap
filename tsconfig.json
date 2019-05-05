@@ -1,24 +1,41 @@
 {
   "compilerOptions": {
     "outDir": "build/dist",
+    "target": "es2017",
     "module": "esnext",
-    "target": "es2016",
-    "lib": ["es6", "dom"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "lib": [
+      "es2017",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "skipLibCheck": true,
+    "importHelpers": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react",
+    // Useful for React: Allow default imports from modules with no default export.
+    "allowSyntheticDefaultImports": true,
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true,
+    // "suppressImplicitAnyIndexErrors": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "jsx": "react",
-    "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node",
-    "rootDirs": ["/src", "/test", "/mock","./typings"],
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "suppressImplicitAnyIndexErrors": true,
+
     "noUnusedLocals": true,
     "allowJs": true,
-    "experimentalDecorators": true,
+    // "experimentalDecorators": true,
+
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+
+    "rootDirs": ["/src", "/test", "/mock","./typings"],
   },
   "include": ["./src"],
   "exclude": [
@@ -28,8 +45,6 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts",
-    "tslint:latest",
-    "tslint-config-prettier"
+    "src/setupTests.ts"
   ]
 }
