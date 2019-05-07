@@ -37,7 +37,7 @@
 
     "rootDirs": ["/src", "/test", "/mock","./typings"],
   },
-  "include": ["./src"],
+  "include": ["./src", "./mock"],
   "exclude": [
     "node_modules",
     "build",
