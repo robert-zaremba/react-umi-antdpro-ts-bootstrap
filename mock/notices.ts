@@ -1,4 +1,4 @@
-const getNotices = (req, res) =>
+const getNotices = (req: any, res: any) =>
   res.json([
     {
       id: '000000001',
