@@ -26,43 +26,29 @@ function HeaderView (props) {
     }
   })
 
-  const { isMobile, handleMenuCollapse, setting } = props
+  const { dispatch, isMobile, handleMenuCollapse, collapsed, setting } = props
   const { navTheme, layout, fixedHeader } = setting
 
-  const getHeadWidth = () => {
-    const { isMobile, collapsed, setting } = props
-    const { fixedHeader, layout } = setting
+  function getHeadWidth () {
     if (isMobile || !fixedHeader || layout === 'topmenu') {
       return '100%'
     }
     return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)'
   }
 
-  // TODO: cant see usage
-  // const getDerivedStateFromProps = (props) => {
-  //   if (!props.autoHideHeader && !visible) {
-  //     return {
-  //       visible: true
-  //     }
-  //   }
-  //   return null
-  // }
-
-  const handleNoticeClear = type => {
+  function handleNoticeClear (type) {
     message.success(
       `${formatMessage({ id: 'component.noticeIcon.cleared' })} ${formatMessage({
         id: `component.globalHeader.${type}`
       })}`
     )
-    const { dispatch } = props
     dispatch({
       type: 'global/clearNotices',
       payload: type
     })
   }
 
-  const handleMenuClick = ({ key }) => {
-    const { dispatch } = props
+  function handleMenuClick (key) {
     if (key === 'userCenter') {
       router.push('/account/center')
       return
@@ -82,16 +68,15 @@ function HeaderView (props) {
     }
   }
 
-  const handleNoticeVisibleChange = visible => {
+  function handleNoticeVisibleChange (visible) {
     if (visible) {
-      const { dispatch } = props
       dispatch({
         type: 'global/fetchNotices'
       })
     }
   }
 
-  const handScroll = () => {
+  function handScroll () {
     const { autoHideHeader } = props
     if (!autoHideHeader) {
       return
@@ -138,6 +123,12 @@ function HeaderView (props) {
       )}
     </Header>
   ) : null
+
+  // https://reactjs.org/docs/hooks-faq.html#how-do-i-implement-getderivedstatefromprops
+  // it says to add it as a condition before return
+  if (!props.autoHideHeader && !visible) {
+      setVisible(true)
+  }
 
   return (
     <Animate component='' transitionName='fade'>
