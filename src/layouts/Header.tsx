@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { useState, useEffect } from 'react'
 import { formatMessage } from 'umi/locale'
 import { Layout, message } from 'antd'
 import Animate from 'rc-animate'
@@ -10,52 +10,45 @@ import styles from './Header.less'
 
 const { Header } = Layout
 
-class HeaderView extends PureComponent {
-  state = {
-    visible: true
-  }
+function HeaderView (props) {
+  const [visible, setVisible] = useState(true)
+  // TO Verify: set logic for oldScrollTop and ticking
+  const [oldScrollTop, setOldScrollTop] = useState(document.body.scrollTop)
+  const [ticking, setTicking] = useState(true)
 
-  static getDerivedStateFromProps (props, state) {
-    if (!props.autoHideHeader && !state.visible) {
-      return {
-        visible: true
-      }
+  useEffect(() => {
+    // componentdidmount
+    document.addEventListener('scroll', handScroll, { passive: true })
+    // Specify how to clean up after this effect:
+    return function cleanup () {
+      // componentdidunmount
+      document.removeEventListener('scroll', handScroll)
     }
-    return null
-  }
+  })
 
-  componentDidMount () {
-    document.addEventListener('scroll', this.handScroll, { passive: true })
-  }
+  const { dispatch, isMobile, handleMenuCollapse, collapsed, setting } = props
+  const { navTheme, layout, fixedHeader } = setting
 
-  componentWillUnmount () {
-    document.removeEventListener('scroll', this.handScroll)
-  }
-
-  getHeadWidth = () => {
-    const { isMobile, collapsed, setting } = this.props
-    const { fixedHeader, layout } = setting
+  function getHeadWidth () {
     if (isMobile || !fixedHeader || layout === 'topmenu') {
       return '100%'
     }
     return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)'
   }
 
-  handleNoticeClear = type => {
+  function handleNoticeClear (type) {
     message.success(
       `${formatMessage({ id: 'component.noticeIcon.cleared' })} ${formatMessage({
         id: `component.globalHeader.${type}`
       })}`
     )
-    const { dispatch } = this.props
     dispatch({
       type: 'global/clearNotices',
       payload: type
     })
   }
 
-  handleMenuClick = ({ key }) => {
-    const { dispatch } = this.props
+  function handleMenuClick (key) {
     if (key === 'userCenter') {
       router.push('/account/center')
       return
@@ -75,79 +68,73 @@ class HeaderView extends PureComponent {
     }
   }
 
-  handleNoticeVisibleChange = visible => {
+  function handleNoticeVisibleChange (visible) {
     if (visible) {
-      const { dispatch } = this.props
       dispatch({
         type: 'global/fetchNotices'
       })
     }
   }
 
-  handScroll = () => {
-    const { autoHideHeader } = this.props
-    const { visible } = this.state
+  function handScroll () {
+    const { autoHideHeader } = props
     if (!autoHideHeader) {
       return
     }
     const scrollTop = document.body.scrollTop + document.documentElement.scrollTop
-    if (!this.ticking) {
-      this.ticking = true
+    if (!ticking) {
+      setTicking(true)
       requestAnimationFrame(() => {
-        if (this.oldScrollTop > scrollTop) {
-          this.setState({
-            visible: true
-          })
+        if (oldScrollTop > scrollTop) {
+          setVisible(true)
         } else if (scrollTop > 300 && visible) {
-          this.setState({
-            visible: false
-          })
+          setVisible(false)
         } else if (scrollTop < 300 && !visible) {
-          this.setState({
-            visible: true
-          })
+          setVisible(true)
         }
-        this.oldScrollTop = scrollTop
-        this.ticking = false
+        setOldScrollTop(scrollTop)
+        setTicking(false)
       })
     }
   }
 
-  render () {
-    const { isMobile, handleMenuCollapse, setting } = this.props
-    const { navTheme, layout, fixedHeader } = setting
-    const { visible } = this.state
-    const isTop = layout === 'topmenu'
-    const width = this.getHeadWidth()
-    const HeaderDom = visible ? (
-      <Header style={{ padding: 0, width }} className={fixedHeader ? styles.fixedHeader : ''}>
-        {isTop && !isMobile ? (
-          <TopNavHeader
-            theme={navTheme}
-            mode='horizontal'
-            onCollapse={handleMenuCollapse}
-            onNoticeClear={this.handleNoticeClear}
-            onMenuClick={this.handleMenuClick}
-            onNoticeVisibleChange={this.handleNoticeVisibleChange}
-            {...this.props}
-          />
-        ) : (
-          <GlobalHeader
-            onCollapse={handleMenuCollapse}
-            onNoticeClear={this.handleNoticeClear}
-            onMenuClick={this.handleMenuClick}
-            onNoticeVisibleChange={this.handleNoticeVisibleChange}
-            {...this.props}
-          />
-        )}
-      </Header>
-    ) : null
-    return (
-      <Animate component='' transitionName='fade'>
-        {HeaderDom}
-      </Animate>
-    )
+  const isTop = layout === 'topmenu'
+  const width = getHeadWidth()
+  const HeaderDom = visible ? (
+    <Header style={{ padding: 0, width }} className={fixedHeader ? styles.fixedHeader : ''}>
+      {isTop && !isMobile ? (
+        <TopNavHeader
+          theme={navTheme}
+          mode='horizontal'
+          onCollapse={handleMenuCollapse}
+          onNoticeClear={handleNoticeClear}
+          onMenuClick={handleMenuClick}
+          onNoticeVisibleChange={handleNoticeVisibleChange}
+          {...props}
+        />
+      ) : (
+        <GlobalHeader
+          onCollapse={handleMenuCollapse}
+          onNoticeClear={handleNoticeClear}
+          onMenuClick={handleMenuClick}
+          onNoticeVisibleChange={handleNoticeVisibleChange}
+          {...props}
+        />
+      )}
+    </Header>
+  ) : null
+
+  // https://reactjs.org/docs/hooks-faq.html#how-do-i-implement-getderivedstatefromprops
+  // it says to add it as a condition before return
+  if (!props.autoHideHeader && !visible) {
+      setVisible(true)
   }
+
+  return (
+    <Animate component='' transitionName='fade'>
+      {HeaderDom}
+    </Animate>
+  )
 }
 
 export default connect(({ user, global, setting, loading }) => ({
