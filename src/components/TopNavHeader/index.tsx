@@ -12,14 +12,14 @@ function TopNavHeader (props: any) {
 
   // getDerivedStateFromProps content
   setMaxWidth((props.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 165 - 40)
+  let main
 
   return (
     <div className={`${styles.head} ${theme === 'light' ? styles.light : ''}`}>
       <div
-        // TO Verify: this main reference is not defined well
-        // ref={ref => {
-        //   this.maim = ref
-        // }}
+        ref={ref => {
+          main = ref
+        }}
         className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`}
       >
         <div className={styles.left}>
