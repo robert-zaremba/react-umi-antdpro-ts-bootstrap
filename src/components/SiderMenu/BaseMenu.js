@@ -2,9 +2,8 @@ import React, { PureComponent } from 'react'
 import classNames from 'classnames'
 import { Menu, Icon } from 'antd'
 import Link from 'umi/link'
-import { urlToList } from '../_utils/pathTools'
 import { getMenuMatches } from './SiderMenuUtils'
-import { isUrl } from '@/utils/utils'
+import { isUrl, urlToList } from '@/utils/url'
 import styles from './index.less'
 
 const { SubMenu } = Menu
