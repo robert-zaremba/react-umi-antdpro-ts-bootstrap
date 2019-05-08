@@ -14,7 +14,8 @@
     ],
     "skipLibCheck": true,
     "importHelpers": true,
-    "strict": true,
+    // TODO: change to true
+    "strict": false,
     "strictNullChecks": true,
     "isolatedModules": true,
     "noEmit": true,

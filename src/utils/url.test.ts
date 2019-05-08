@@ -1,15 +1,8 @@
-import { isUrl } from './utils'
+import { isUrl, urlToList } from './url'
 
 describe('isUrl tests', () => {
   it('should return false for invalid and corner case inputs', () => {
-    expect(isUrl([])).toBeFalsy()
-    expect(isUrl({})).toBeFalsy()
-    expect(isUrl(false)).toBeFalsy()
-    expect(isUrl(true)).toBeFalsy()
-    expect(isUrl(NaN)).toBeFalsy()
-    expect(isUrl(null)).toBeFalsy()
-    expect(isUrl(undefined)).toBeFalsy()
-    expect(isUrl()).toBeFalsy()
+    // Wrong types are handled by compiler :)
     expect(isUrl('')).toBeFalsy()
   })
 
@@ -34,5 +27,21 @@ describe('isUrl tests', () => {
     expect(isUrl('https://www.example.com/test/123')).toBeTruthy()
     expect(isUrl('http://www.example.com/test/123?foo=bar')).toBeTruthy()
     expect(isUrl('https://www.example.com/test/123?foo=bar')).toBeTruthy()
+  })
+})
+
+describe('test urlToList', () => {
+  it('A path', () => {
+    expect(urlToList('/userinfo')).toEqual(['/userinfo'])
+  })
+  it('Secondary path', () => {
+    expect(urlToList('/userinfo/2144')).toEqual(['/userinfo', '/userinfo/2144'])
+  })
+  it('Three paths', () => {
+    expect(urlToList('/userinfo/2144/addr')).toEqual([
+      '/userinfo',
+      '/userinfo/2144',
+      '/userinfo/2144/addr'
+    ])
   })
 })

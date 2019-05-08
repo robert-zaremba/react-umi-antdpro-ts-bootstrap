@@ -5,7 +5,7 @@ import Debounce from 'lodash-decorators/debounce'
 import styles from './index.less'
 import RightContent from './RightContent'
 
-export default  function GlobalHeader2 (props) {
+export default function GlobalHeader2 (props) {
   // eslint-disable
   @Debounce(600)
   function triggerResizeEvent () {
