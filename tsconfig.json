@@ -16,7 +16,6 @@
     "importHelpers": true,
     // TODO: change to true
     "strict": false,
-    "strictNullChecks": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",

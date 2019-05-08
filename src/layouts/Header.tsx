@@ -6,7 +6,8 @@ import { connect } from 'dva'
 import router from 'umi/router'
 import GlobalHeader from '@/components/GlobalHeader'
 import TopNavHeader from '@/components/TopNavHeader'
-import styles from './Header.less'
+
+const styles = require('./Header.less')
 
 const { Header } = Layout
 

@@ -4,8 +4,9 @@ import Link from 'umi/link'
 import { Icon } from 'antd'
 import { GlobalFooter } from 'ant-design-pro'
 import SelectLang from '@/components/SelectLang'
-import styles from './UserLayout.less'
-import logo from '../assets/logo.svg'
+
+const styles = require('./UserLayout.less')
+const logo = require('../assets/logo.svg')
 
 const links = [
   {
