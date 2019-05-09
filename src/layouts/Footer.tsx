@@ -21,7 +21,7 @@ const FooterView = () => (
       ]}
       copyright={
         <Fragment>
-          Copyright <Icon type='copyright' /> 2019 ...
+          Copyright <Icon type='copyright' /> {{ new Date().getFullYear() }} ...
         </Fragment>
       }
     />
