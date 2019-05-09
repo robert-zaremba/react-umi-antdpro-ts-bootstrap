@@ -3,8 +3,8 @@ import { Layout, Icon } from 'antd'
 import { GlobalFooter } from 'ant-design-pro'
 
 const { Footer } = Layout
-const FooterView = () => (
-  <Footer style={{ padding: 0 }}>
+export default function FooterView () {
+  return <Footer style={{ padding: 0 }}>
     <GlobalFooter
       links={[
         {
@@ -21,10 +21,9 @@ const FooterView = () => (
       ]}
       copyright={
         <Fragment>
-          Copyright <Icon type='copyright' /> {{ new Date().getFullYear() }} ...
+          Copyright <Icon type='copyright' /> {new Date().getFullYear().toString()} ...
         </Fragment>
       }
-    />
+  />
   </Footer>
-)
-export default FooterView
+}
