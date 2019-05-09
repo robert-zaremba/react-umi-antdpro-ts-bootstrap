@@ -14,16 +14,12 @@
     ],
     "skipLibCheck": true,
     "importHelpers": true,
-    // TODO: change to true
     "strict": false,
-    "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    // Useful for React: Allow default imports from modules with no default export.
     "allowSyntheticDefaultImports": true,
     "noImplicitReturns": true,
     "forceConsistentCasingInFileNames": true,
-    // "suppressImplicitAnyIndexErrors": true,
     "sourceMap": true,
     "baseUrl": ".",
 
@@ -35,8 +31,9 @@
       "@/*": ["./src/*"]
     },
 
-    "rootDirs": ["/src", "/test", "/mock","./typings"],
+    "rootDirs": ["/src", "/test", "/mock","./typings"]
   },
+
   "include": ["./src", "./mock"],
   "exclude": [
     "node_modules",
