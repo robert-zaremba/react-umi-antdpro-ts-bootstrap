@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { Icon } from 'antd'
 import Link from 'umi/link'
 import Debounce from 'lodash-decorators/debounce'
-import styles from './index.less'
 import RightContent from './RightContent'
+
+const styles = require('./BasicLayout.less')
 
 export default function GlobalHeader2 (props) {
   // eslint-disable
