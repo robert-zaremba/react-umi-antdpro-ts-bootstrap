@@ -17,3 +17,15 @@
 
 + Disabling rules
     // eslint-disable-next-line import/prefer-default-export
+
+
+# graphql clients
+
+## Relay
+
+### file uploading
+
++ https://madeintandem.com/blog/uploading-files-relay-modern/
++ https://github.com/relay-tools/react-relay-network-modern/issues/41
++ https://github.com/relay-tools/react-relay-network-modern
++ https://github.com/facebook/relay/issues/1844
