@@ -4,7 +4,7 @@ import Link from 'umi/link'
 import Debounce from 'lodash-decorators/debounce'
 import RightContent from './RightContent'
 
-const styles = require('./BasicLayout.less')
+const styles = require('./index.less')
 
 export default function GlobalHeader2 (props) {
   // eslint-disable
