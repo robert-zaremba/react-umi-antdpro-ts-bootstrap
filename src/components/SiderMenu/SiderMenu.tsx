@@ -2,9 +2,18 @@ import React, { useState, Suspense } from 'react'
 import { Layout } from 'antd'
 import classNames from 'classnames'
 import Link from 'umi/link'
-import styles from './index.less'
 import PageLoading from '../PageLoading'
 import { getDefaultCollapsedSubMenus } from './SiderMenuUtils'
+
+const styles = require('./index.less')
+
+function isMainMenu (menu, key) {
+  if (!key) return false
+  for (let item of menu) {
+    if (item.key === key || item.path === key) return true
+  }
+  return false
+}
 
 const BaseMenu = React.lazy(() => import('./BaseMenu'))
 const { Sider } = Layout
@@ -19,17 +28,8 @@ function SiderMenu (props: any) {
     [styles.light]: theme === 'light'
   })
 
-  function isMainMenu (key) {
-    return menuData.some(item => {
-      if (key) {
-        return item.key === key || item.path === key
-      }
-      return false
-    })
-  }
-
   function handleOpenChange (openKeys) {
-    const moreThanOne = openKeys.filter(openKey => isMainMenu(openKey)).length > 1
+    const moreThanOne = openKeys.filter(openKey => isMainMenu(menuData, openKey)).length > 1
     setOpenKeys(moreThanOne ? [openKeys.pop()] : [...openKeys])
   }
 

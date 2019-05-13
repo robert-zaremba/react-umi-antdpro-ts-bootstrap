@@ -18,11 +18,8 @@ function HeaderView (props) {
   const [ticking, setTicking] = useState(true)
 
   useEffect(() => {
-    // componentdidmount
     document.addEventListener('scroll', handScroll, { passive: true })
-    // Specify how to clean up after this effect:
     return function cleanup () {
-      // componentdidunmount
       document.removeEventListener('scroll', handScroll)
     }
   })

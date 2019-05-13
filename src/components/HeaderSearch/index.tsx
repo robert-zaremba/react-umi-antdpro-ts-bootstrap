@@ -4,7 +4,8 @@ import { Input, Icon, AutoComplete } from 'antd'
 import classNames from 'classnames'
 import Debounce from 'lodash-decorators/debounce'
 import Bind from 'lodash-decorators/bind'
-import styles from './index.less'
+
+const styles = require('./index.less')
 
 // TODO: define on next task
 // static propTypes = {
@@ -44,9 +45,7 @@ export default function HeaderSearch (props) {
         textInput.current.focus()
       }
     }
-    // Specify how to clean up after this effect:
     return function cleanup () {
-      // componentdidunmount
       clearTimeout(timeout)
     }
   }, [searchMode])
@@ -89,9 +88,7 @@ export default function HeaderSearch (props) {
   }
 
   delete restProps.defaultOpen // for rc-select not affected
-  const inputClass = classNames(styles.input, {
-    [styles.show]: searchMode
-  })
+  const inputClass = classNames(styles.input, { [styles.show]: searchMode })
 
   // getDerivedStateFromProps
   if ('open' in props) {

@@ -3,7 +3,8 @@ import Link from 'umi/link'
 import RightContent from '../GlobalHeader/RightContent'
 import BaseMenu from '../SiderMenu/BaseMenu'
 import { getFlatMenuKeys } from '../SiderMenu/SiderMenuUtils'
-import styles from './index.less'
+
+const styles = require('./index.less')
 
 function TopNavHeader (props: any) {
   const [maxWidth, setMaxWidth] = useState(undefined)
@@ -17,11 +18,7 @@ function TopNavHeader (props: any) {
   return (
     <div className={`${styles.head} ${theme === 'light' ? styles.light : ''}`}>
       <div
-        ref={ref => {
-          main = ref
-        }}
-        className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`}
-      >
+        ref={ref => { main = ref}} className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`} >
         <div className={styles.left}>
           <div className={styles.logo} key='logo' id='logo'>
             <Link to='/'>
