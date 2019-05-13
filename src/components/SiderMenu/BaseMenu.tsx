@@ -1,10 +1,11 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import classNames from 'classnames'
 import { Menu, Icon } from 'antd'
 import Link from 'umi/link'
 import { getMenuMatches } from './SiderMenuUtils'
 import { isUrl, urlToList } from '@/utils/url'
-import styles from './index.less'
+
+const styles = require('./index.less')
 
 const { SubMenu } = Menu
 

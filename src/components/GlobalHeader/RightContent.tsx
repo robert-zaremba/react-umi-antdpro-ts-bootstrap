@@ -7,7 +7,51 @@ import { NoticeIcon } from 'ant-design-pro'
 import HeaderSearch from '../HeaderSearch'
 import HeaderDropdown from '../HeaderDropdown'
 import SelectLang from '../SelectLang'
-import styles from './index.less'
+
+const styles = require('./index.less')
+
+function getNoticeData (notices) {
+ if (notices.length === 0) {
+   return {}
+ }
+ const newNotices = notices.map(notice => {
+   // newNotice and notice carries the same value
+   // if (newNotice.datetime) {
+   //   newNotice.datetime = moment(notice.datetime).fromNow()
+   // }
+   if (notice.id) {
+     notice.key = notice.id
+   }
+   if (notice.extra && notice.status) {
+     const color = {
+       todo: '',
+       processing: 'blue',
+       urgent: 'red',
+       doing: 'gold'
+     }[notice.status]
+     notice.extra = (
+       <Tag color={color} style={{ marginRight: 0 }}>
+         {notice.extra}
+       </Tag>
+     )
+   }
+   return notice
+ })
+ return groupBy(newNotices, 'type')
+}
+
+function getUnreadData (noticeData) {
+ const unreadMsg = {}
+ Object.entries(noticeData).forEach(([key, value]) => {
+   if (!unreadMsg[key]) {
+     unreadMsg[key] = 0
+   }
+   if (Array.isArray(value)) {
+     unreadMsg[key] = value.filter(item => !item.read).length
+   }
+ })
+ return unreadMsg
+}
 
 export default function GlobalHeaderRight (props) {
   const {
@@ -20,36 +64,6 @@ export default function GlobalHeaderRight (props) {
     notices = [],
     dispatch
   } = props
-
-  function getNoticeData () {
-    if (notices.length === 0) {
-      return {}
-    }
-    const newNotices = notices.map(notice => {
-      const newNotice = { ...notice }
-      if (newNotice.datetime) {
-        newNotice.datetime = moment(notice.datetime).fromNow()
-      }
-      if (newNotice.id) {
-        newNotice.key = newNotice.id
-      }
-      if (newNotice.extra && newNotice.status) {
-        const color = {
-          todo: '',
-          processing: 'blue',
-          urgent: 'red',
-          doing: 'gold'
-        }[newNotice.status]
-        newNotice.extra = (
-          <Tag color={color} style={{ marginRight: 0 }}>
-            {newNotice.extra}
-          </Tag>
-        )
-      }
-      return newNotice
-    })
-    return groupBy(newNotices, 'type')
-  }
 
   function getUnreadData (noticeData) {
     const unreadMsg = {}
@@ -65,10 +79,9 @@ export default function GlobalHeaderRight (props) {
   }
 
   function changeReadState (clickedItem) {
-    const { id } = clickedItem
     dispatch({
       type: 'global/changeNoticeReadState',
-      payload: id
+      payload: clickedItem.id
     })
   }
 
@@ -93,7 +106,7 @@ export default function GlobalHeaderRight (props) {
       </Menu.Item>
     </Menu>
   )
-  const noticeData = getNoticeData()
+  const noticeData = getNoticeData(notices)
   const unreadMsg = getUnreadData(noticeData)
   let className = styles.right
   if (theme === 'dark') {

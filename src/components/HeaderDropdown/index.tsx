@@ -1,7 +1,8 @@
 import React from 'react'
 import { Dropdown } from 'antd'
 import classNames from 'classnames'
-import styles from './index.less'
+
+const styles = require('./index.less')
 
 export default function HeaderDropdown (props) {
   const { overlayClassName } = props
