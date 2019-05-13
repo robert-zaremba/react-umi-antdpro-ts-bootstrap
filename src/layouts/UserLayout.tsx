@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { formatMessage } from 'umi/locale'
+import { formatMessage } from 'umi-plugin-locale'
 import Link from 'umi/link'
 import { Icon } from 'antd'
 import { GlobalFooter } from 'ant-design-pro'
