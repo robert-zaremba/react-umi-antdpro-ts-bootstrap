@@ -96,28 +96,13 @@ function getLayoutStyle ({ fixSiderbar, isMobile, collapsed, layout }) {
   return null
 }
 
-// TODO remove this function
-function getContext (props) {
-  const { location, breadcrumbNameMap } = props
-  return {
-    location,
-    breadcrumbNameMap
-  }
-}
-
 function BasicLayout (props: any) {
   useEffect(() => {
-    const dispatch = props.dispatch
+    const { dispatch, route: { routes, authority } } = props
     dispatch({ type: 'user/fetchCurrent' })
     dispatch({ type: 'setting/getSetting' })
-    // TODO: make sure this works.
-    //   Originally this was in componentDidMount component method
-    // const r = props.route
-    // dispatch({
-    //   type: 'menu/getMenuData',
-    //   payload: { routes: r.routes, authority: r.authority }
-    // })
-  })
+    dispatch({ type: 'menu/getMenuData', payload: { routes, authority } })
+  }, [])
 
   function handleMenuCollapse (collapsed: boolean) {
     props.dispatch({
@@ -180,7 +165,7 @@ function BasicLayout (props: any) {
       <DocumentTitle title={getPageTitle(pathname, breadcrumbNameMap)}>
         <ContainerQuery query={query}>
           {params => (
-            <Context.Provider value={getContext(props)}>
+            <Context.Provider value={{ location, breadcrumbNameMap }}>
               <div className={classNames(params)}>{layout}</div>
             </Context.Provider>
           )}
