@@ -1,7 +1,6 @@
 import React from 'react'
-import { FormattedMessage, formatMessage } from 'umi/locale'
+import { FormattedMessage, formatMessage } from 'umi-plugin-locale'
 import { Spin, Tag, Menu, Icon, Avatar, Tooltip } from 'antd'
-import moment from 'moment'
 import groupBy from 'lodash/groupBy'
 import { NoticeIcon } from 'ant-design-pro'
 import HeaderSearch from '../HeaderSearch'
@@ -10,7 +9,54 @@ import SelectLang from '../SelectLang'
 
 const styles = require('./index.less')
 
-function getNoticeData (notices) {
+interface  GetNoticeDataProps {
+  avatar: string
+  datetime: string
+  id: string
+  title: string
+  type: string
+  key: string
+  extra: Object
+  status: string
+}
+
+interface UnreadDataEventProps {
+  description: string
+  extra: Object
+  id: string
+  key: string
+  status: string
+  title: string
+  type: string
+}
+
+interface UnreadDataMessageProps {
+  avatar: string
+  clickClose: Boolean
+  datetime: string
+  description: string
+  id: string
+  key: string
+  title: string
+  type: string
+}
+
+interface UnreadDataNotificationProps {
+  avatar: string
+  datetime: string
+  id: string
+  key: string
+  title: string
+  type: string
+}
+interface  GetUnreadDataProps {
+  event: Array<UnreadDataEventProps>
+  message: Array<UnreadDataMessageProps>
+  notification: Array<UnreadDataNotificationProps>
+}
+
+function getNoticeData (notices: Array<GetNoticeDataProps>) {
+  debugger
  if (notices.length === 0) {
    return {}
  }
@@ -22,15 +68,17 @@ function getNoticeData (notices) {
    if (notice.id) {
      notice.key = notice.id
    }
+  //  TODO: fix color component props
    if (notice.extra && notice.status) {
-     const color = {
-       todo: '',
-       processing: 'blue',
-       urgent: 'red',
-       doing: 'gold'
-     }[notice.status]
+    //  const color = {
+    //    todo: '',
+    //    processing: 'blue',
+    //    urgent: 'red',
+    //    doing: 'gold'
+    //  }[notice.status]
      notice.extra = (
-       <Tag color={color} style={{ marginRight: 0 }}>
+      //  <Tag color={color} style={{ marginRight: 0 }}>
+      <Tag style={{ marginRight: 0 }}>
          {notice.extra}
        </Tag>
      )
@@ -40,7 +88,7 @@ function getNoticeData (notices) {
  return groupBy(newNotices, 'type')
 }
 
-function getUnreadData (noticeData) {
+function getUnreadData (noticeData: GetUnreadDataProps) {
  const unreadMsg = {}
  Object.entries(noticeData).forEach(([key, value]) => {
    if (!unreadMsg[key]) {
@@ -64,19 +112,6 @@ export default function GlobalHeaderRight (props) {
     notices = [],
     dispatch
   } = props
-
-  function getUnreadData (noticeData) {
-    const unreadMsg = {}
-    Object.entries(noticeData).forEach(([key, value]) => {
-      if (!unreadMsg[key]) {
-        unreadMsg[key] = 0
-      }
-      if (Array.isArray(value)) {
-        unreadMsg[key] = value.filter(item => !item.read).length
-      }
-    })
-    return unreadMsg
-  }
 
   function changeReadState (clickedItem) {
     dispatch({

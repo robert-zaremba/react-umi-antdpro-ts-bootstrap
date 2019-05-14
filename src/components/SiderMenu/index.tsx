@@ -3,7 +3,14 @@ import { Drawer } from 'antd'
 import SiderMenu from './SiderMenu'
 import { getFlatMenuKeys } from './SiderMenuUtils'
 
-const SiderMenuWrapper = React.memo(props => {
+interface SiderMenuWrapperProps {
+  isMobile: Boolean
+  menuData: Array<Object>
+  collapsed: Boolean
+  onCollapse: Function
+}
+
+function SiderMenuWrapper (props: SiderMenuWrapperProps) {
   const { isMobile, menuData, collapsed, onCollapse } = props
   const flatMenuKeys = getFlatMenuKeys(menuData)
   return isMobile ? (
@@ -21,6 +28,6 @@ const SiderMenuWrapper = React.memo(props => {
   ) : (
     <SiderMenu {...props} flatMenuKeys={flatMenuKeys} />
   )
-})
+}
 
 export default SiderMenuWrapper
