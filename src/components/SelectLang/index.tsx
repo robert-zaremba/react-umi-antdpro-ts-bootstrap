@@ -11,6 +11,7 @@ function changeLang ({ key }) {
 }
 
 const selectedLang = getLocale()
+
 const langMenu = (
   <Menu className={styles.menu} selectedKeys={[selectedLang]} onClick={changeLang}>
     <Menu.Item key='zh-CN'>

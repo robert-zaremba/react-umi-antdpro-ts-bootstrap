@@ -7,7 +7,7 @@ import { getDefaultCollapsedSubMenus } from './SiderMenuUtils'
 
 const styles = require('./index.less')
 
- function isMainMenu (menu, key) {
+function isMainMenu (menu, key) {
   if (!key) return false
   for (let item of menu) {
     if (item.key === key || item.path === key) return true
