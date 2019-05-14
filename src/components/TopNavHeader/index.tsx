@@ -17,8 +17,7 @@ function TopNavHeader (props: any) {
 
   return (
     <div className={`${styles.head} ${theme === 'light' ? styles.light : ''}`}>
-      <div
-        ref={ref => { main = ref}} className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`} >
+      <div ref={ref => {main = ref}} className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`}>
         <div className={styles.left}>
           <div className={styles.logo} key='logo' id='logo'>
             <Link to='/'>

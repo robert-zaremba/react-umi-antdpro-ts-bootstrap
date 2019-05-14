@@ -10,47 +10,47 @@ import SelectLang from '../SelectLang'
 
 const styles = require('./index.less')
 
-function getNoticeData () {
-  if (notices.length === 0) {
-    return {}
-  }
-  const newNotices = notices.map(notice => {
-    // newNotice and notice carries the same value
-    // if (newNotice.datetime) {
-    //   newNotice.datetime = moment(notice.datetime).fromNow()
-    // }
-    if (notice.id) {
-      notice.key = notice.id
-    }
-    if (notice.extra && notice.status) {
-      const color = {
-        todo: '',
-        processing: 'blue',
-        urgent: 'red',
-        doing: 'gold'
-      }[notice.status]
-      notice.extra = (
-        <Tag color={color} style={{ marginRight: 0 }}>
-          {notice.extra}
-        </Tag>
-      )
-    }
-    return notice
-  })
-  return groupBy(newNotices, 'type')
+function getNoticeData (notices) {
+ if (notices.length === 0) {
+   return {}
+ }
+ const newNotices = notices.map(notice => {
+   // newNotice and notice carries the same value
+   // if (newNotice.datetime) {
+   //   newNotice.datetime = moment(notice.datetime).fromNow()
+   // }
+   if (notice.id) {
+     notice.key = notice.id
+   }
+   if (notice.extra && notice.status) {
+     const color = {
+       todo: '',
+       processing: 'blue',
+       urgent: 'red',
+       doing: 'gold'
+     }[notice.status]
+     notice.extra = (
+       <Tag color={color} style={{ marginRight: 0 }}>
+         {notice.extra}
+       </Tag>
+     )
+   }
+   return notice
+ })
+ return groupBy(newNotices, 'type')
 }
 
 function getUnreadData (noticeData) {
-  const unreadMsg = {}
-  Object.entries(noticeData).forEach(([key, value]) => {
-    if (!unreadMsg[key]) {
-      unreadMsg[key] = 0
-    }
-    if (Array.isArray(value)) {
-      unreadMsg[key] = value.filter(item => !item.read).length
-    }
-  })
-  return unreadMsg
+ const unreadMsg = {}
+ Object.entries(noticeData).forEach(([key, value]) => {
+   if (!unreadMsg[key]) {
+     unreadMsg[key] = 0
+   }
+   if (Array.isArray(value)) {
+     unreadMsg[key] = value.filter(item => !item.read).length
+   }
+ })
+ return unreadMsg
 }
 
 export default function GlobalHeaderRight (props) {
@@ -61,8 +61,22 @@ export default function GlobalHeaderRight (props) {
     onMenuClick,
     onNoticeClear,
     theme,
+    notices = [],
     dispatch
   } = props
+
+  function getUnreadData (noticeData) {
+    const unreadMsg = {}
+    Object.entries(noticeData).forEach(([key, value]) => {
+      if (!unreadMsg[key]) {
+        unreadMsg[key] = 0
+      }
+      if (Array.isArray(value)) {
+        unreadMsg[key] = value.filter(item => !item.read).length
+      }
+    })
+    return unreadMsg
+  }
 
   function changeReadState (clickedItem) {
     dispatch({
@@ -92,7 +106,7 @@ export default function GlobalHeaderRight (props) {
       </Menu.Item>
     </Menu>
   )
-  const noticeData = getNoticeData()
+  const noticeData = getNoticeData(notices)
   const unreadMsg = getUnreadData(noticeData)
   let className = styles.right
   if (theme === 'dark') {
