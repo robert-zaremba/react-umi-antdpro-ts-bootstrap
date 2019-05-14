@@ -47,7 +47,7 @@ const getSubMenu = item => {
   if (item.children && !item.hideChildrenInMenu && item.children.some(child => child.name)) {
     return {
       ...item,
-      children: filterMenuData(item.children) // eslint-disable-line
+      children: filterMenuData(item.children)
     }
   }
   return item
