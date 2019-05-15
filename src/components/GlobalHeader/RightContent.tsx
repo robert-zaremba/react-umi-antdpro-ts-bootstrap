@@ -105,17 +105,15 @@ function getNoticeData (notices) {
    if (notice.id) {
      notice.key = notice.id
    }
-  //  TODO: fix color component props
    if (notice.extra && notice.status) {
-    //  const color = {
-    //    todo: '',
-    //    processing: 'blue',
-    //    urgent: 'red',
-    //    doing: 'gold'
-    //  }[notice.status]
+     const color = {
+       todo: '',
+       processing: 'blue',
+       urgent: 'red',
+       doing: 'gold'
+     }[notice.status]
      notice.extra = (
-      //  <Tag color={color} style={{ marginRight: 0 }}>
-      <Tag style={{ marginRight: 0 }}>
+       <Tag color={color} style={{ marginRight: 0 }}>
          {notice.extra}
        </Tag>
      )
@@ -125,7 +123,7 @@ function getNoticeData (notices) {
  return groupBy(newNotices, 'type')
 }
 
-function getUnreadData (noticeData: GetUnreadDataProps) {
+function getUnreadData (noticeData) {
  const unreadMsg = {}
  Object.entries(noticeData).forEach(([key, value]) => {
    if (!unreadMsg[key]) {
