@@ -32,7 +32,7 @@ interface UnreadDataEventProps {
 
 interface UnreadDataMessageProps {
   avatar: string
-  clickClose: Boolean
+  clickClose: boolean
   datetime: string
   description: string
   id: string
@@ -53,6 +53,44 @@ interface  GetUnreadDataProps {
   event: Array<UnreadDataEventProps>
   message: Array<UnreadDataMessageProps>
   notification: Array<UnreadDataNotificationProps>
+}
+
+interface ValueProps {
+  key: string
+  label: string
+}
+
+interface GeographicProps {
+  province: ValueProps
+  city: ValueProps
+}
+
+interface CurrentUserProps {
+  address: string
+  avatar: string
+  country: string
+  email: string
+  geographic: GeographicProps
+  group: string
+  name: string
+  notifyCount: number
+  phone: string
+  signature: string
+  tags: Array<ValueProps>
+  title: string
+  unreadCount: string
+  userid: string
+}
+
+interface GlobalHeaderRightProps {
+  currentUser: CurrentUserProps
+  fetchingNotices: Object
+  onNoticeVisibleChange: Function
+  onMenuClick: Function
+  onNoticeClear: Function
+  theme: string
+  notices: Array<GetNoticeDataProps>
+  dispatch: Function
 }
 
 function getNoticeData (notices) {
@@ -100,7 +138,7 @@ function getUnreadData (noticeData: GetUnreadDataProps) {
  return unreadMsg
 }
 
-export default function GlobalHeaderRight (props) {
+export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
   const {
     currentUser,
     fetchingNotices,
@@ -182,9 +220,7 @@ export default function GlobalHeaderRight (props) {
         }}
         locale={{
           emptyText: formatMessage({ id: 'component.noticeIcon.empty' }),
-          clear: formatMessage({ id: 'component.noticeIcon.clear' }),
-          key: formatMessage({ id: 'component.noticeIcon.key' }),
-          viewMore: formatMessage({ id: 'component.noticeIcon.viewMore' })
+          clear: formatMessage({ id: 'component.noticeIcon.clear' })
         }}
         onClear={onNoticeClear}
         onPopupVisibleChange={onNoticeVisibleChange}

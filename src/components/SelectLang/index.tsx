@@ -41,7 +41,11 @@ const langMenu = (
   </Menu>
 )
 
-export default function SelectLang (props) {
+interface SelectLangProps {
+  className: string
+}
+
+export default function SelectLang (props: SelectLangProps) {
   const { className } = props
 
   return (

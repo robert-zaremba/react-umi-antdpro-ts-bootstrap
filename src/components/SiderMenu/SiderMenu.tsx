@@ -18,7 +18,29 @@ function isMainMenu (menu, key) {
 const BaseMenu = React.lazy(() => import('./BaseMenu'))
 const { Sider } = Layout
 
-function SiderMenu (props: any) {
+interface MenuDataProps {
+  authority: string
+  component: Function
+  exact: boolean
+  icon: string
+  locale: string
+  name: string
+  path: string
+}
+
+interface SiderMenuProps {
+  menuData: Array<MenuDataProps>
+  logo: string
+  collapsed: boolean
+  onCollapse: Function
+  fixSiderbar: boolean
+  theme: string
+  location: {
+    pathname: string
+  }
+}
+
+function SiderMenu (props: SiderMenuProps) {
   const [openKeys, setOpenKeys] = useState(getDefaultCollapsedSubMenus(props))
   const [pathname, setPathName] = useState(props.location.pathname)
   const { menuData, logo, collapsed, onCollapse, fixSiderbar, theme } = props

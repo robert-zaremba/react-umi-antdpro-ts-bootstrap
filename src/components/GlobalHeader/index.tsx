@@ -8,8 +8,8 @@ const styles = require('./index.less')
 
 interface GlobalHeader2Props {
   onCollapse: Function
-  isMobile: Boolean
-  collapsed: Boolean
+  isMobile: boolean
+  collapsed: boolean
   logo: string
 }
 

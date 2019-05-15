@@ -4,9 +4,9 @@ import SiderMenu from './SiderMenu'
 import { getFlatMenuKeys } from './SiderMenuUtils'
 
 interface SiderMenuWrapperProps {
-  isMobile: Boolean
+  isMobile: boolean
   menuData: Array<Object>
-  collapsed: Boolean
+  collapsed: boolean
   onCollapse: Function
 }
 

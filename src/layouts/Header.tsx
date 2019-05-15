@@ -14,15 +14,15 @@ const { Header } = Layout
 interface HeaderSettingProps {
   navTheme: string
   layout: string
-  fixedHeader: Boolean
+  fixedHeader: boolean
 }
 interface HeaderViewProps {
   dispatch: Function
-  isMobile: Boolean
+  isMobile: boolean
   handleMenuCollapse: Function
-  collapsed: Boolean
+  collapsed: boolean
   setting: HeaderSettingProps
-  autoHideHeader: Boolean
+  autoHideHeader: boolean
 }
 
 function HeaderView (props: HeaderViewProps) {
@@ -80,7 +80,7 @@ function HeaderView (props: HeaderViewProps) {
     }
   }
 
-  function handleNoticeVisibleChange (visible: Boolean) {
+  function handleNoticeVisibleChange (visible: boolean) {
     if (visible) {
       dispatch({
         type: 'global/fetchNotices'
