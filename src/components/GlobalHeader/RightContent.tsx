@@ -55,8 +55,7 @@ interface  GetUnreadDataProps {
   notification: Array<UnreadDataNotificationProps>
 }
 
-function getNoticeData (notices: Array<GetNoticeDataProps>) {
-  debugger
+function getNoticeData (notices) {
  if (notices.length === 0) {
    return {}
  }
@@ -179,11 +178,13 @@ export default function GlobalHeaderRight (props) {
         count={currentUser.unreadCount}
         onItemClick={(item, tabProps) => {
           console.log(item, tabProps) // eslint-disable-line
-          changeReadState(item, tabProps)
+          changeReadState(item)
         }}
         locale={{
           emptyText: formatMessage({ id: 'component.noticeIcon.empty' }),
-          clear: formatMessage({ id: 'component.noticeIcon.clear' })
+          clear: formatMessage({ id: 'component.noticeIcon.clear' }),
+          key: formatMessage({ id: 'component.noticeIcon.key' }),
+          viewMore: formatMessage({ id: 'component.noticeIcon.viewMore' })
         }}
         onClear={onNoticeClear}
         onPopupVisibleChange={onNoticeVisibleChange}
