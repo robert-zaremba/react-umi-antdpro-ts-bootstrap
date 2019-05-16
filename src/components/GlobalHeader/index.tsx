@@ -6,14 +6,14 @@ import RightContent from './RightContent'
 
 const styles = require('./index.less')
 
-interface GlobalHeader2Props {
+interface GlobalHeaderProps {
   onCollapse: Function
   isMobile: boolean
   collapsed: boolean
   logo: string
 }
 
-export default function GlobalHeader2 (props: GlobalHeader2Props) {
+export default function GlobalHeader (props: GlobalHeaderProps) {
 
   const { onCollapse, isMobile, collapsed, logo } = props
   @Debounce(600)
