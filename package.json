@@ -23,6 +23,8 @@
     "prettier": "node ./scripts/prettier.js"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.127",
+    "@types/react-document-title": "^2.0.3",
     "ant-design-pro": "^2.3.1",
     "antd": "^3.16.6",
     "classnames": "^2.2.6",

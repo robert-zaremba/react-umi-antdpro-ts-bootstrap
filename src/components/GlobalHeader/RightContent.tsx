@@ -1,7 +1,6 @@
 import React from 'react'
-import { FormattedMessage, formatMessage } from 'umi/locale'
+import { FormattedMessage, formatMessage } from 'umi-plugin-locale'
 import { Spin, Tag, Menu, Icon, Avatar, Tooltip } from 'antd'
-import moment from 'moment'
 import groupBy from 'lodash/groupBy'
 import { NoticeIcon } from 'ant-design-pro'
 import HeaderSearch from '../HeaderSearch'
@@ -9,6 +8,90 @@ import HeaderDropdown from '../HeaderDropdown'
 import SelectLang from '../SelectLang'
 
 const styles = require('./index.less')
+
+interface  GetNoticeDataProps {
+  avatar: string
+  datetime: string
+  id: string
+  title: string
+  type: string
+  key: string
+  extra: Object
+  status: string
+}
+
+interface UnreadDataEventProps {
+  description: string
+  extra: Object
+  id: string
+  key: string
+  status: string
+  title: string
+  type: string
+}
+
+interface UnreadDataMessageProps {
+  avatar: string
+  clickClose: boolean
+  datetime: string
+  description: string
+  id: string
+  key: string
+  title: string
+  type: string
+}
+
+interface UnreadDataNotificationProps {
+  avatar: string
+  datetime: string
+  id: string
+  key: string
+  title: string
+  type: string
+}
+interface  GetUnreadDataProps {
+  event: Array<UnreadDataEventProps>
+  message: Array<UnreadDataMessageProps>
+  notification: Array<UnreadDataNotificationProps>
+}
+
+interface ValueProps {
+  key: string
+  label: string
+}
+
+interface GeographicProps {
+  province: ValueProps
+  city: ValueProps
+}
+
+interface CurrentUserProps {
+  address: string
+  avatar: string
+  country: string
+  email: string
+  geographic: GeographicProps
+  group: string
+  name: string
+  notifyCount: number
+  phone: string
+  signature: string
+  tags: Array<ValueProps>
+  title: string
+  unreadCount: string
+  userid: string
+}
+
+interface GlobalHeaderRightProps {
+  currentUser: CurrentUserProps
+  fetchingNotices: Object
+  onNoticeVisibleChange: Function
+  onMenuClick: Function
+  onNoticeClear: Function
+  theme: string
+  notices: Array<GetNoticeDataProps>
+  dispatch: Function
+}
 
 function getNoticeData (notices) {
  if (notices.length === 0) {
@@ -53,7 +136,7 @@ function getUnreadData (noticeData) {
  return unreadMsg
 }
 
-export default function GlobalHeaderRight (props) {
+export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
   const {
     currentUser,
     fetchingNotices,
@@ -64,19 +147,6 @@ export default function GlobalHeaderRight (props) {
     notices = [],
     dispatch
   } = props
-
-  function getUnreadData (noticeData) {
-    const unreadMsg = {}
-    Object.entries(noticeData).forEach(([key, value]) => {
-      if (!unreadMsg[key]) {
-        unreadMsg[key] = 0
-      }
-      if (Array.isArray(value)) {
-        unreadMsg[key] = value.filter(item => !item.read).length
-      }
-    })
-    return unreadMsg
-  }
 
   function changeReadState (clickedItem) {
     dispatch({
@@ -144,7 +214,7 @@ export default function GlobalHeaderRight (props) {
         count={currentUser.unreadCount}
         onItemClick={(item, tabProps) => {
           console.log(item, tabProps) // eslint-disable-line
-          changeReadState(item, tabProps)
+          changeReadState(item)
         }}
         locale={{
           emptyText: formatMessage({ id: 'component.noticeIcon.empty' }),

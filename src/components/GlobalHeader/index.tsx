@@ -6,8 +6,16 @@ import RightContent from './RightContent'
 
 const styles = require('./index.less')
 
-export default function GlobalHeader2 (props) {
-  // eslint-disable
+interface GlobalHeaderProps {
+  onCollapse: Function
+  isMobile: boolean
+  collapsed: boolean
+  logo: string
+}
+
+export default function GlobalHeader (props: GlobalHeaderProps) {
+
+  const { onCollapse, isMobile, collapsed, logo } = props
   @Debounce(600)
   function triggerResizeEvent () {
     const event = document.createEvent('HTMLEvents')
@@ -16,7 +24,7 @@ export default function GlobalHeader2 (props) {
   }
 
   function toggle () {
-    props.onCollapse(!props.collapsed)
+    onCollapse(!collapsed)
     triggerResizeEvent()
   }
 
@@ -24,13 +32,13 @@ export default function GlobalHeader2 (props) {
 
   return (
     <div className={styles.header}>
-      {props.isMobile && (
+      {isMobile && (
         <Link to='/' className={styles.logo} key='logo'>
-          <img src={props.logo} alt='logo' width='32' />
+          <img src={logo} alt='logo' width='32' />
         </Link>
       )}
       <span className={styles.trigger} onClick={toggle}>
-        <Icon type={props.collapsed ? 'menu-unfold' : 'menu-fold'} />
+        <Icon type={collapsed ? 'menu-unfold' : 'menu-fold'} />
       </span>
       <RightContent {...props} />
     </div>

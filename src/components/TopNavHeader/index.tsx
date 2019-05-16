@@ -6,7 +6,14 @@ import { getFlatMenuKeys } from '../SiderMenu/SiderMenuUtils'
 
 const styles = require('./index.less')
 
-function TopNavHeader (props: any) {
+interface TopNavHeaderProps {
+  theme: string
+  contentWidth: string
+  menuData: Array<Object>
+  logo: string
+}
+
+function TopNavHeader (props: TopNavHeaderProps) {
   const [maxWidth, setMaxWidth] = useState(undefined)
   const { theme, contentWidth, menuData, logo } = props
   const flatMenuKeys = getFlatMenuKeys(menuData)

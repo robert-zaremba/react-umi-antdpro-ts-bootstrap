@@ -1,5 +1,4 @@
 import React, { useState, useEffect, createRef } from 'react'
-import PropTypes from 'prop-types'
 import { Input, Icon, AutoComplete } from 'antd'
 import classNames from 'classnames'
 import Debounce from 'lodash-decorators/debounce'
@@ -7,30 +6,16 @@ import Bind from 'lodash-decorators/bind'
 
 const styles = require('./index.less')
 
-// TODO: define on next task
-// static propTypes = {
-//   className: PropTypes.string,
-//   placeholder: PropTypes.string,
-//   onSearch: PropTypes.func,
-//   onPressEnter: PropTypes.func,
-//   defaultActiveFirstOption: PropTypes.bool,
-//   dataSource: PropTypes.array,
-//   defaultOpen: PropTypes.bool,
-//   onVisibleChange: PropTypes.func
-// }
+interface HeaderSearchProps {
+  className: string
+  placeholder: string
+  open: boolean
+  onChange: Function
+  onPressEnter: Function
+  defaultOpen: boolean
+}
 
-// static defaultProps = {
-//   defaultActiveFirstOption: false,
-//   onPressEnter: () => {},
-//   onSearch: () => {},
-//   className: '',
-//   placeholder: '',
-//   dataSource: [],
-//   defaultOpen: false,
-//   onVisibleChange: () => {}
-// }
-
-export default function HeaderSearch (props) {
+export default function HeaderSearch (props: HeaderSearchProps) {
   const [searchMode, setSearchMode] = useState(props.defaultOpen)
   const [value, setValue] = useState('')
   // TO Verify: onVisibleChange not defined or passed as props
@@ -92,7 +77,7 @@ export default function HeaderSearch (props) {
 
   // getDerivedStateFromProps
   if ('open' in props) {
-    setSearchMode(props.open)
+    setSearchMode(open)
   }
 
   return (

@@ -23,7 +23,25 @@ const getIcon = icon => {
   return icon
 }
 
-export default function BaseMenu (props) {
+interface BaseMenuProps {
+  openKeys: Object
+  theme: string
+  mode: string
+  location: { pathname: string }
+  className: string
+  collapsed: boolean
+  handleOpenChange: Function
+  style: {
+    padding: string
+    width: string
+  }
+  menuData: Array<Object>
+  flatMenuKeys: Array<string>
+  isMobile: boolean
+  onCollapse: Function
+}
+
+export default function BaseMenu (props: BaseMenuProps) {
   const {
     openKeys,
     theme,

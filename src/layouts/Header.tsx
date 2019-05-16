@@ -11,7 +11,21 @@ const styles = require('./Header.less')
 
 const { Header } = Layout
 
-function HeaderView (props) {
+interface HeaderSettingProps {
+  navTheme: string
+  layout: string
+  fixedHeader: boolean
+}
+interface HeaderViewProps {
+  dispatch: Function
+  isMobile: boolean
+  handleMenuCollapse: Function
+  collapsed: boolean
+  setting: HeaderSettingProps
+  autoHideHeader: boolean
+}
+
+function HeaderView (props: HeaderViewProps) {
   const [visible, setVisible] = useState(true)
   // TO Verify: set logic for oldScrollTop and ticking
   const [oldScrollTop, setOldScrollTop] = useState(document.body.scrollTop)
@@ -24,7 +38,7 @@ function HeaderView (props) {
     }
   })
 
-  const { dispatch, isMobile, handleMenuCollapse, collapsed, setting } = props
+  const { dispatch, isMobile, handleMenuCollapse, collapsed, setting, autoHideHeader } = props
   const { navTheme, layout, fixedHeader } = setting
 
   function getHeadWidth () {
@@ -46,7 +60,7 @@ function HeaderView (props) {
     })
   }
 
-  function handleMenuClick (key) {
+  function handleMenuClick (key: string) {
     if (key === 'userCenter') {
       router.push('/account/center')
       return
@@ -66,7 +80,7 @@ function HeaderView (props) {
     }
   }
 
-  function handleNoticeVisibleChange (visible) {
+  function handleNoticeVisibleChange (visible: boolean) {
     if (visible) {
       dispatch({
         type: 'global/fetchNotices'
@@ -75,7 +89,6 @@ function HeaderView (props) {
   }
 
   function handScroll () {
-    const { autoHideHeader } = props
     if (!autoHideHeader) {
       return
     }
@@ -124,7 +137,7 @@ function HeaderView (props) {
 
   // https://reactjs.org/docs/hooks-faq.html#how-do-i-implement-getderivedstatefromprops
   // it says to add it as a condition before return
-  if (!props.autoHideHeader && !visible) {
+  if (!autoHideHeader && !visible) {
       setVisible(true)
   }
 

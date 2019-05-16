@@ -32,7 +32,11 @@ const copyright = (
   </Fragment>
 )
 
-function UserLayout (props) {
+interface UserLayoutProps {
+  children: Object
+}
+
+function UserLayout (props: UserLayoutProps) {
   // @TODO title
   // getPageTitle() {
   //   const { routerData, location } = this.props;

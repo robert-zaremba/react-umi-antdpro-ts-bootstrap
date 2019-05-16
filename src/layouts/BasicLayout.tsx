@@ -45,6 +45,26 @@ const query = {
   }
 }
 
+interface BasicLayoutProps {
+  navTheme: string
+  layout: string
+  children: Object
+  location: {
+    pathname: string
+  }
+  isMobile: boolean
+  menuData: Object
+  breadcrumbNameMap: Object
+  route: {
+    routes: Object
+    authority: Object
+  }
+  fixedHeader: boolean
+  dispatch: Function
+  fixSiderbar: boolean
+  collapsed: boolean
+}
+
 function getRouterAuthority (pathname: string, routes) {
   let routeAuthority = ['noAuthority']
   const assignAuthority = (key: string, _routes) => {
@@ -96,7 +116,7 @@ function getLayoutStyle ({ fixSiderbar, isMobile, collapsed, layout }) {
   return null
 }
 
-function BasicLayout (props: any) {
+function BasicLayout (props: BasicLayoutProps) {
   useEffect(() => {
     const { dispatch, route: { routes, authority } } = props
     dispatch({ type: 'user/fetchCurrent' })
