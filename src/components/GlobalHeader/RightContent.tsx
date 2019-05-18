@@ -6,6 +6,7 @@ import { NoticeIcon } from 'ant-design-pro'
 import HeaderSearch from '../HeaderSearch'
 import HeaderDropdown from '../HeaderDropdown'
 import SelectLang from '../SelectLang'
+import { MenuDataProps } from '@/components/SiderMenu/SiderMenu'
 
 const styles = require('./index.less')
 
@@ -82,7 +83,7 @@ interface CurrentUserProps {
   userid: string
 }
 
-interface GlobalHeaderRightProps {
+export interface GlobalHeaderRightProps {
   currentUser: CurrentUserProps
   fetchingNotices: Object
   onNoticeVisibleChange: Function
@@ -91,6 +92,9 @@ interface GlobalHeaderRightProps {
   theme: string
   notices: Array<GetNoticeDataProps>
   dispatch: Function
+  contentWidth: string
+  menuData: Array<MenuDataProps>
+  logo: string
 }
 
 function getNoticeData (notices) {

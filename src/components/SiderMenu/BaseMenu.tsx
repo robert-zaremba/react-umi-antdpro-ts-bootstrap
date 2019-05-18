@@ -4,6 +4,7 @@ import { Menu, Icon } from 'antd'
 import Link from 'umi/link'
 import { getMenuMatches } from './SiderMenuUtils'
 import { isUrl, urlToList } from '@/utils/url'
+import { MenuDataProps } from '../SiderMenu/SiderMenu'
 
 const styles = require('./index.less')
 
@@ -35,7 +36,7 @@ interface BaseMenuProps {
     padding: string
     width: string
   }
-  menuData: Array<Object>
+  menuData: Array<MenuDataProps>
   flatMenuKeys: Array<string>
   isMobile: boolean
   onCollapse: Function
@@ -61,7 +62,7 @@ export default function BaseMenu (props: BaseMenuProps) {
    * 获得菜单子节点
    * @memberof SiderMenu
    */
-  function getNavMenuItems (menusData, parent) {
+  function getNavMenuItems (menusData, parent?) {
     if (!menusData) {
       return []
     }
@@ -79,7 +80,7 @@ export default function BaseMenu (props: BaseMenuProps) {
   /**
    * get SubMenu or Item
    */
-  function getSubMenuOrItem (item) {
+  function getSubMenuOrItem (item, parent?) {
     // doc: add hideChildrenInMenu
     if (item.children && !item.hideChildrenInMenu && item.children.some(child => child.name)) {
       const { name } = item

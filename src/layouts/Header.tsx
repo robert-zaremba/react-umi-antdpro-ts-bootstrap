@@ -23,6 +23,13 @@ interface HeaderViewProps {
   collapsed: boolean
   setting: HeaderSettingProps
   autoHideHeader: boolean
+  onNoticeClear: Function
+  onMenuClick: Function
+  onNoticeVisibleChange: Function
+  logo: string
+  mode: string
+  onCollapse: Function
+  contentWidth: string
 }
 
 function HeaderView (props: HeaderViewProps) {

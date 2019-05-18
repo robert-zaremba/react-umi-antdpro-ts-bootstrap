@@ -28,7 +28,7 @@ export default function GlobalHeader (props: GlobalHeaderProps) {
     triggerResizeEvent()
   }
 
-  useEffect(() => triggerResizeEvent.cancel)
+  useEffect(() => triggerResizeEvent)
 
   return (
     <div className={styles.header}>

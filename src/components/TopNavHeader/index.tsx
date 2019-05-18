@@ -1,19 +1,13 @@
 import React, { useState } from 'react'
 import Link from 'umi/link'
-import RightContent from '../GlobalHeader/RightContent'
-import BaseMenu from '../SiderMenu/BaseMenu'
-import { getFlatMenuKeys } from '../SiderMenu/SiderMenuUtils'
+import RightContent from '@/components/GlobalHeader/RightContent'
+import BaseMenu from '@/components/SiderMenu/BaseMenu'
+import { getFlatMenuKeys } from '@/components/SiderMenu/SiderMenuUtils'
+import { GlobalHeaderRightProps } from '@/components/GlobalHeader/RightContent'
 
 const styles = require('./index.less')
 
-interface TopNavHeaderProps {
-  theme: string
-  contentWidth: string
-  menuData: Array<Object>
-  logo: string
-}
-
-function TopNavHeader (props: TopNavHeaderProps) {
+function TopNavHeader (props: GlobalHeaderRightProps) {
   const [maxWidth, setMaxWidth] = useState(undefined)
   const { theme, contentWidth, menuData, logo } = props
   const flatMenuKeys = getFlatMenuKeys(menuData)
