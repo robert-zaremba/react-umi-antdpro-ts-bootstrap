@@ -16,6 +16,7 @@
     "importHelpers": true,
     "strict": false,
     "noEmit": true,
+    "removeComments": true,
     "jsx": "react",
     "allowSyntheticDefaultImports": true,
     "noImplicitReturns": true,
