@@ -62,8 +62,8 @@ export default function HeaderSearch (props: HeaderSearchProps) {
   }
 
   // NOTE: 不能小于500，如果长按某键，第一次触发auto repeat的间隔是500ms，小于500会导致触发2次
-  @Bind()
-  @Debounce(500, {
+  Bind()
+  Debounce(500, {
     leading: true,
     trailing: false
   })

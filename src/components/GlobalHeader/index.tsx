@@ -16,7 +16,7 @@ interface GlobalHeaderProps {
 export default function GlobalHeader (props: GlobalHeaderProps) {
 
   const { onCollapse, isMobile, collapsed, logo } = props
-  @Debounce(600)
+  Debounce(600)
   function triggerResizeEvent () {
     const event = document.createEvent('HTMLEvents')
     event.initEvent('resize', true, false)
