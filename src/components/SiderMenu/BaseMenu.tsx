@@ -4,7 +4,7 @@ import { Menu, Icon } from 'antd'
 import Link from 'umi/link'
 import { getMenuMatches } from './SiderMenuUtils'
 import { isUrl, urlToList } from '@/utils/url'
-import { MenuDataProps } from '../SiderMenu/SiderMenu'
+import { GlobalHeaderRightProps } from '@/components/GlobalHeader/RightContent'
 
 const styles = require('./index.less')
 
@@ -24,25 +24,7 @@ const getIcon = icon => {
   return icon
 }
 
-interface BaseMenuProps {
-  openKeys: Object
-  theme: string
-  mode: string
-  location: { pathname: string }
-  className: string
-  collapsed: boolean
-  handleOpenChange: Function
-  style: {
-    padding: string
-    width: string
-  }
-  menuData: Array<MenuDataProps>
-  flatMenuKeys: Array<string>
-  isMobile: boolean
-  onCollapse: Function
-}
-
-export default function BaseMenu (props: BaseMenuProps) {
+export default function BaseMenu (props: GlobalHeaderRightProps) {
   const {
     openKeys,
     theme,

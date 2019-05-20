@@ -6,33 +6,13 @@ import { connect } from 'dva'
 import router from 'umi/router'
 import GlobalHeader from '@/components/GlobalHeader'
 import TopNavHeader from '@/components/TopNavHeader'
+import { GlobalHeaderRightProps } from '@/components/GlobalHeader/RightContent'
 
 const styles = require('./Header.less')
 
 const { Header } = Layout
 
-interface HeaderSettingProps {
-  navTheme: string
-  layout: string
-  fixedHeader: boolean
-}
-interface HeaderViewProps {
-  dispatch: Function
-  isMobile: boolean
-  handleMenuCollapse: Function
-  collapsed: boolean
-  setting: HeaderSettingProps
-  autoHideHeader: boolean
-  onNoticeClear: Function
-  onMenuClick: Function
-  onNoticeVisibleChange: Function
-  logo: string
-  mode: string
-  onCollapse: Function
-  contentWidth: string
-}
-
-function HeaderView (props: HeaderViewProps) {
+function HeaderView (props: GlobalHeaderRightProps) {
   const [visible, setVisible] = useState(true)
   // TO Verify: set logic for oldScrollTop and ticking
   const [oldScrollTop, setOldScrollTop] = useState(document.body.scrollTop)

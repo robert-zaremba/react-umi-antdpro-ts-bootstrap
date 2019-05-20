@@ -35,7 +35,7 @@ interface SiderMenuProps {
   collapsed: boolean
   onCollapse: Function
   fixSiderbar: boolean
-  theme: string
+  theme: 'light' | 'dark'
   location: {
     pathname: string
   }

@@ -21,41 +21,6 @@ interface  GetNoticeDataProps {
   status: string
 }
 
-interface UnreadDataEventProps {
-  description: string
-  extra: Object
-  id: string
-  key: string
-  status: string
-  title: string
-  type: string
-}
-
-interface UnreadDataMessageProps {
-  avatar: string
-  clickClose: boolean
-  datetime: string
-  description: string
-  id: string
-  key: string
-  title: string
-  type: string
-}
-
-interface UnreadDataNotificationProps {
-  avatar: string
-  datetime: string
-  id: string
-  key: string
-  title: string
-  type: string
-}
-interface  GetUnreadDataProps {
-  event: Array<UnreadDataEventProps>
-  message: Array<UnreadDataMessageProps>
-  notification: Array<UnreadDataNotificationProps>
-}
-
 interface ValueProps {
   key: string
   label: string
@@ -83,11 +48,24 @@ interface CurrentUserProps {
   userid: string
 }
 
+export interface ClickParam {
+  key: string
+  keyPath: Array<string>
+  item: any
+  domEvent: any
+}
+
+interface HeaderSettingProps {
+  navTheme: string
+  layout: string
+  fixedHeader: boolean
+}
+
 export interface GlobalHeaderRightProps {
   currentUser: CurrentUserProps
   fetchingNotices: Object
   onNoticeVisibleChange: Function
-  onMenuClick: Function
+  onMenuClick: (param: ClickParam) => void
   onNoticeClear: Function
   theme: string
   notices: Array<GetNoticeDataProps>
@@ -95,6 +73,22 @@ export interface GlobalHeaderRightProps {
   contentWidth: string
   menuData: Array<MenuDataProps>
   logo: string
+  isMobile: boolean
+  handleMenuCollapse: Function
+  collapsed: boolean
+  setting: HeaderSettingProps
+  autoHideHeader: boolean
+  mode: string
+  onCollapse: Function
+  openKeys: Object
+  location: { pathname: string }
+  className: string
+  handleOpenChange: Function
+  style: {
+    padding: string
+    width: string
+  }
+  flatMenuKeys: Array<string>
 }
 
 function getNoticeData (notices) {
