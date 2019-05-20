@@ -105,7 +105,7 @@ export default function HeaderSearch (props: HeaderSearchProps) {
         onChange={onChangeInput}
       >
         <Input
-          ref={textInput}
+          ref={ref => textInput}
           aria-label={placeholder}
           placeholder={placeholder}
           onKeyDown={onKeyDown}

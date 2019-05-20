@@ -10,6 +10,7 @@ interface SiderMenuWrapperProps {
   collapsed: boolean
   onCollapse: Function
   logo: string
+  theme: string
 }
 
 function SiderMenuWrapper (props: SiderMenuWrapperProps) {
