@@ -6,13 +6,13 @@ const styles = require('./index.less')
 
 interface HeaderDropdownProps {
   children: Object
-  overlayClassName: Object
-  placement: string
+  overlay: Object
+  placement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight'
 }
 
 export default function HeaderDropdown (props: HeaderDropdownProps) {
-  const { overlayClassName } = props
+  const { overlay } = props
   return (
-    <Dropdown overlayClassName={classNames(styles.container, overlayClassName)} {...props} />
+    <Dropdown overlay={classNames(styles.container, overlay)} {...props} />
   )
 }

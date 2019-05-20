@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, createRef } from 'react'
 import Link from 'umi/link'
 import RightContent from '@/components/GlobalHeader/RightContent'
 import BaseMenu from '@/components/SiderMenu/BaseMenu'
@@ -11,14 +11,14 @@ function TopNavHeader (props: GlobalHeaderRightProps) {
   const [maxWidth, setMaxWidth] = useState(undefined)
   const { theme, contentWidth, menuData, logo } = props
   const flatMenuKeys = getFlatMenuKeys(menuData)
+  let main = createRef()
 
   // getDerivedStateFromProps content
   setMaxWidth((props.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 165 - 40)
-  let main
 
   return (
     <div className={`${styles.head} ${theme === 'light' ? styles.light : ''}`}>
-      <div ref={ref => {main = ref}} className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`}>
+      <div ref={ref => main} className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`}>
         <div className={styles.left}>
           <div className={styles.logo} key='logo' id='logo'>
             <Link to='/'>

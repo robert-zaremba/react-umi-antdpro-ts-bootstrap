@@ -7,12 +7,15 @@ import Bind from 'lodash-decorators/bind'
 const styles = require('./index.less')
 
 interface HeaderSearchProps {
-  className: string
-  placeholder: string
-  open: boolean
-  onChange: Function
-  onPressEnter: Function
-  defaultOpen: boolean
+  placeholder?: string
+  dataSource?: string[]
+  defaultOpen?: boolean
+  open?: boolean
+  onSearch?: (value: string) => void
+  onChange?: (value: string) => void
+  onVisibleChange?: (visible: boolean) => void
+  onPressEnter?: (value: string) => void
+  className?: string
 }
 
 export default function HeaderSearch (props: HeaderSearchProps) {
@@ -20,16 +23,17 @@ export default function HeaderSearch (props: HeaderSearchProps) {
   const [value, setValue] = useState('')
   // TO Verify: onVisibleChange not defined or passed as props
   const { className, placeholder, open, onChange, onPressEnter, ...restProps } = props
-  let textInput = React.createRef()
+  const textInput = createRef()
 
   let timeout
 
   useEffect(() => {
-    if (searchMode) {
-      if (textInput.current) {
-        textInput.current.focus()
-      }
-    }
+    // this condition is never been hit. focus is not applicable to Object element
+    // if (searchMode) {
+    //   if (textInput.current) {
+    //     textInput.current.focus()
+    //   }
+    // }
     return function cleanup () {
       clearTimeout(timeout)
     }
@@ -68,9 +72,10 @@ export default function HeaderSearch (props: HeaderSearchProps) {
     trailing: false
   })
 
-  function debouncePressEnter () {
-    onPressEnter(value)
-  }
+  // not called
+  // function debouncePressEnter () {
+  //   onPressEnter(value)
+  // }
 
   delete restProps.defaultOpen // for rc-select not affected
   const inputClass = classNames(styles.input, { [styles.show]: searchMode })
