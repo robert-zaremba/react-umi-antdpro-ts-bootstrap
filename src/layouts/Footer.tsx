@@ -24,6 +24,6 @@ export default function FooterView () {
           Copyright <Icon type='copyright' /> {new Date().getFullYear().toString()} ...
         </Fragment>
       }
-  />
+    />
   </Footer>
 }

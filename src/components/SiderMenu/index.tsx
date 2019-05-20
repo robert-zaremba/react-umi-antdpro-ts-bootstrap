@@ -20,13 +20,13 @@ function SiderMenuWrapper (props: SiderMenuWrapperProps) {
     <Drawer
       visible={!collapsed}
       placement='left'
-      onClose={() => onCollapse(true)}
+      onClose={() => onCollapse(true)}  // tslint:disable-line
       style={{
         padding: 0,
         height: '100vh'
       }}
     >
-      <SiderMenu {...props} flatMenuKeys={flatMenuKeys} collapsed={isMobile ? false : collapsed} />
+      <SiderMenu {...props} flatMenuKeys={flatMenuKeys} collapsed={false} />
     </Drawer>
   ) : (
     <SiderMenu {...props} flatMenuKeys={flatMenuKeys} />

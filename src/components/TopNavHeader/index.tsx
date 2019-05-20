@@ -11,14 +11,15 @@ function TopNavHeader (props: GlobalHeaderRightProps) {
   const [maxWidth, setMaxWidth] = useState(undefined)
   const { theme, contentWidth, menuData, logo } = props
   const flatMenuKeys = getFlatMenuKeys(menuData)
-  let main = createRef()
 
   // getDerivedStateFromProps content
   setMaxWidth((props.contentWidth === 'Fixed' ? 1200 : window.innerWidth) - 280 - 165 - 40)
+  let contentWidthCls = contentWidth === 'Fixed' ? styles.wide : ''
+  let main = createRef()
 
   return (
     <div className={`${styles.head} ${theme === 'light' ? styles.light : ''}`}>
-      <div ref={ref => main} className={`${styles.main} ${contentWidth === 'Fixed' ? styles.wide : ''}`}>
+      <div ref={main} className={`${styles.main} ${contentWidthCls}`}>
         <div className={styles.left}>
           <div className={styles.logo} key='logo' id='logo'>
             <Link to='/'>
