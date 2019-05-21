@@ -41,16 +41,10 @@ const langMenu = (
   </Menu>
 )
 
-interface SelectLangProps {
-  className: string
-}
-
-export default function SelectLang (props: SelectLangProps) {
-  const { className } = props
-
+export default function SelectLang (props) {
   return (
     <HeaderDropdown overlay={langMenu} placement='bottomRight'>
-      <span className={classNames(styles.dropDown, className)}>
+      <span className={classNames(styles.dropDown, props.className)}>
         <Icon type='global' title={formatMessage({ id: 'navBar.lang' })} />
       </span>
     </HeaderDropdown>

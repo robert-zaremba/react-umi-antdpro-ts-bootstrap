@@ -7,12 +7,15 @@ import Bind from 'lodash-decorators/bind'
 const styles = require('./index.less')
 
 interface HeaderSearchProps {
-  className: string
-  placeholder: string
-  open: boolean
-  onChange: Function
-  onPressEnter: Function
-  defaultOpen: boolean
+  placeholder?: string
+  dataSource?: string[]
+  defaultOpen?: boolean
+  open?: boolean
+  onSearch?: (value: string) => void
+  onChange?: (value: string) => void
+  onVisibleChange?: (visible: boolean) => void
+  onPressEnter?: (value: string) => void
+  className?: string
 }
 
 export default function HeaderSearch (props: HeaderSearchProps) {
@@ -20,24 +23,23 @@ export default function HeaderSearch (props: HeaderSearchProps) {
   const [value, setValue] = useState('')
   // TO Verify: onVisibleChange not defined or passed as props
   const { className, placeholder, open, onChange, onPressEnter, ...restProps } = props
-  let textInput = React.createRef()
-
-  let timeout
+  const textInput = createRef()
 
   useEffect(() => {
-    if (searchMode) {
-      if (textInput.current) {
-        textInput.current.focus()
-      }
-    }
+    // this condition is never been hit. focus is not applicable to Object element
+    // if (searchMode) {
+    //   if (textInput.current) {
+    //     textInput.current.focus()
+    //   }
+    // }
     return function cleanup () {
-      clearTimeout(timeout)
+      return clearTimeout
     }
   }, [searchMode])
 
   function onKeyDown (e) {
     if (e.key === 'Enter') {
-      timeout = setTimeout(() => {
+      setTimeout(() => {
         onPressEnter(value) // Fix duplicate onPressEnter
       }, 0)
     }
@@ -100,7 +102,7 @@ export default function HeaderSearch (props: HeaderSearchProps) {
         onChange={onChangeInput}
       >
         <Input
-          ref={textInput}
+          ref={ref => textInput}
           aria-label={placeholder}
           placeholder={placeholder}
           onKeyDown={onKeyDown}

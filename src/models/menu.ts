@@ -6,7 +6,7 @@ import Authorized from '@/utils/Authorized'
 const { check } = Authorized
 
 // Conversion router to menu.
-function formatter (data, parentAuthority, parentName) {
+function formatter (data, parentAuthority, parentName?) {
   return data
     .map(item => {
       if (!item.name || !item.path) {
@@ -62,7 +62,7 @@ const filterMenuData = menuData => {
   }
   return menuData
     .filter(item => item.name && !item.hideInMenu)
-    .map(item => check(item.authority, getSubMenu(item)))
+    .map(item => check(item.authority, getSubMenu(item), null))
     .filter(item => item)
 }
 /**

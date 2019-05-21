@@ -3,17 +3,11 @@ import { Icon } from 'antd'
 import Link from 'umi/link'
 import Debounce from 'lodash-decorators/debounce'
 import RightContent from './RightContent'
+import { GlobalHeaderRightProps } from './RightContent'
 
 const styles = require('./index.less')
 
-interface GlobalHeaderProps {
-  onCollapse: Function
-  isMobile: boolean
-  collapsed: boolean
-  logo: string
-}
-
-export default function GlobalHeader (props: GlobalHeaderProps) {
+export default function GlobalHeader (props: GlobalHeaderRightProps) {
 
   const { onCollapse, isMobile, collapsed, logo } = props
   @Debounce(600)

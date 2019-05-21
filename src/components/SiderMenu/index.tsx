@@ -2,12 +2,15 @@ import React from 'react'
 import { Drawer } from 'antd'
 import SiderMenu from './SiderMenu'
 import { getFlatMenuKeys } from './SiderMenuUtils'
+import { MenuDataProps } from '../SiderMenu/SiderMenu'
 
 interface SiderMenuWrapperProps {
   isMobile: boolean
-  menuData: Array<Object>
+  menuData: Array<MenuDataProps>
   collapsed: boolean
   onCollapse: Function
+  logo: string
+  theme: string
 }
 
 function SiderMenuWrapper (props: SiderMenuWrapperProps) {

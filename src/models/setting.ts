@@ -4,7 +4,7 @@ import defaultSettings from '../defaultSettings'
 let lessNodesAppended
 const updateTheme = primaryColor => {
   // Don't compile less in production!
-  if (APP_TYPE !== 'site') {
+  if (process.env.APP_TYPE !== 'site') {
     return
   }
   // Determine if the component is remounted
@@ -68,7 +68,7 @@ export default {
   state: defaultSettings,
   reducers: {
     getSetting (state) {
-      const setting = {}
+      const setting = { primaryColor: '', colorWeak: '' }
       const urlParams = new URL(window.location.href)
       Object.keys(state).forEach(key => {
         if (urlParams.searchParams.has(key)) {

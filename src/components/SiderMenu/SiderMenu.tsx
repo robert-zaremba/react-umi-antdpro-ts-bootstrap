@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import Link from 'umi/link'
 import PageLoading from '../PageLoading'
 import { getDefaultCollapsedSubMenus } from './SiderMenuUtils'
+import { MenuDataProps } from '../SiderMenu/SiderMenu'
 
 const styles = require('./index.less')
 
@@ -18,7 +19,7 @@ function isMainMenu (menu, key) {
 const BaseMenu = React.lazy(() => import('./BaseMenu'))
 const { Sider } = Layout
 
-interface MenuDataProps {
+export interface MenuDataProps {
   authority: string
   component: Function
   exact: boolean
@@ -34,7 +35,7 @@ interface SiderMenuProps {
   collapsed: boolean
   onCollapse: Function
   fixSiderbar: boolean
-  theme: string
+  theme: 'light' | 'dark'
   location: {
     pathname: string
   }

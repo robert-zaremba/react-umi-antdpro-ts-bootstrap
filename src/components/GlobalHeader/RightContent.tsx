@@ -6,6 +6,7 @@ import { NoticeIcon } from 'ant-design-pro'
 import HeaderSearch from '../HeaderSearch'
 import HeaderDropdown from '../HeaderDropdown'
 import SelectLang from '../SelectLang'
+import { MenuDataProps } from '@/components/SiderMenu/SiderMenu'
 
 const styles = require('./index.less')
 
@@ -18,41 +19,6 @@ interface  GetNoticeDataProps {
   key: string
   extra: Object
   status: string
-}
-
-interface UnreadDataEventProps {
-  description: string
-  extra: Object
-  id: string
-  key: string
-  status: string
-  title: string
-  type: string
-}
-
-interface UnreadDataMessageProps {
-  avatar: string
-  clickClose: boolean
-  datetime: string
-  description: string
-  id: string
-  key: string
-  title: string
-  type: string
-}
-
-interface UnreadDataNotificationProps {
-  avatar: string
-  datetime: string
-  id: string
-  key: string
-  title: string
-  type: string
-}
-interface  GetUnreadDataProps {
-  event: Array<UnreadDataEventProps>
-  message: Array<UnreadDataMessageProps>
-  notification: Array<UnreadDataNotificationProps>
 }
 
 interface ValueProps {
@@ -78,19 +44,58 @@ interface CurrentUserProps {
   signature: string
   tags: Array<ValueProps>
   title: string
-  unreadCount: string
+  unreadCount: number
   userid: string
 }
 
-interface GlobalHeaderRightProps {
+export interface ClickParam {
+  key: string
+  keyPath: Array<string>
+  item: any
+  domEvent: any
+}
+
+interface HeaderSettingProps {
+  navTheme: string
+  layout: string
+  fixedHeader: boolean
+}
+
+export interface GlobalHeaderRightProps {
   currentUser: CurrentUserProps
-  fetchingNotices: Object
-  onNoticeVisibleChange: Function
-  onMenuClick: Function
-  onNoticeClear: Function
-  theme: string
+  fetchingNotices: boolean
+  onNoticeVisibleChange: (visible: boolean) => void
+  onMenuClick: (param: ClickParam) => void
+  onNoticeClear: (tabName: string) => void
+  theme: 'light' | 'dark'
   notices: Array<GetNoticeDataProps>
   dispatch: Function
+  contentWidth: string
+  menuData: Array<MenuDataProps>
+  logo: string
+  isMobile: boolean
+  handleMenuCollapse: Function
+  collapsed: boolean
+  setting: HeaderSettingProps
+  autoHideHeader: boolean
+  mode: 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline'
+  onCollapse: Function
+  openKeys: Array<Object>
+  location: { pathname: string }
+  className: string
+  handleOpenChange: (openKeys: string[]) => void
+  style: {
+    padding: string
+    width: string
+  }
+  flatMenuKeys: Array<string>
+  locale?: {
+    emptyText: string
+    clear: string
+    viewMore: string
+    [key: string]: string
+  }
+  onOpenChange: Function
 }
 
 function getNoticeData (notices) {
@@ -123,8 +128,14 @@ function getNoticeData (notices) {
  return groupBy(newNotices, 'type')
 }
 
+interface UnreadDataType {
+  notification: number
+  message: number
+  event: number
+}
+
 function getUnreadData (noticeData) {
- const unreadMsg = {}
+ const unreadMsg: UnreadDataType = { notification: 0, message: 0, event: 0 }
  Object.entries(noticeData).forEach(([key, value]) => {
    if (!unreadMsg[key]) {
      unreadMsg[key] = 0
@@ -219,6 +230,8 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
         locale={{
           emptyText: formatMessage({ id: 'component.noticeIcon.empty' }),
           clear: formatMessage({ id: 'component.noticeIcon.clear' })
+          // key: formatMessage({ id: ' '}),
+          // viewMore: formatMessage({ id: ' '})
         }}
         onClear={onNoticeClear}
         onPopupVisibleChange={onNoticeVisibleChange}

@@ -14,6 +14,7 @@ import Footer from './Footer'
 import Header from './Header'
 import Context from './MenuContext'
 import SiderMenu from '@/components/SiderMenu'
+import { MenuDataProps } from '@/components/SiderMenu/SiderMenu'
 
 const styles = require('./BasicLayout.less')
 const logo = require('../assets/logo.svg')
@@ -53,16 +54,18 @@ interface BasicLayoutProps {
     pathname: string
   }
   isMobile: boolean
-  menuData: Object
-  breadcrumbNameMap: Object
+  menuData: Array<MenuDataProps>
+  breadcrumbNameMap: Array<pathToRegexp.Key>
   route: {
     routes: Object
-    authority: Object
+    authority: string
   }
   fixedHeader: boolean
   dispatch: Function
   fixSiderbar: boolean
   collapsed: boolean
+  logo: string
+  theme: string
 }
 
 function getRouterAuthority (pathname: string, routes) {
