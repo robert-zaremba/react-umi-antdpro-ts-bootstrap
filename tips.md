@@ -1,9 +1,14 @@
 
+# umijs
+
+## controling the build process
+
++ turning on/off the typescript  typecheck: [fork-ts-checker](https://umijs.org/guide/env-variables.html#fork-ts-checker)
+
 # typescript
 
 + Ignore typecheck
   add the following comment: // @ts-ignore
-
 
 # linting
 
