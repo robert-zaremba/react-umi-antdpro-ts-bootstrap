@@ -58,7 +58,7 @@ interface BasicLayoutProps {
   breadcrumbNameMap: Array<pathToRegexp.Key>
   route: {
     routes: Object
-    authority: Object
+    authority: string
   }
   fixedHeader: boolean
   dispatch: Function

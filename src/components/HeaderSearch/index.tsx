@@ -25,8 +25,6 @@ export default function HeaderSearch (props: HeaderSearchProps) {
   const { className, placeholder, open, onChange, onPressEnter, ...restProps } = props
   const textInput = createRef()
 
-  let timeout
-
   useEffect(() => {
     // this condition is never been hit. focus is not applicable to Object element
     // if (searchMode) {
@@ -35,13 +33,13 @@ export default function HeaderSearch (props: HeaderSearchProps) {
     //   }
     // }
     return function cleanup () {
-      clearTimeout(timeout)
+      return clearTimeout
     }
   }, [searchMode])
 
   function onKeyDown (e) {
     if (e.key === 'Enter') {
-      timeout = setTimeout(() => {
+      setTimeout(() => {
         onPressEnter(value) // Fix duplicate onPressEnter
       }, 0)
     }
@@ -66,16 +64,15 @@ export default function HeaderSearch (props: HeaderSearchProps) {
   }
 
   // NOTE: 不能小于500，如果长按某键，第一次触发auto repeat的间隔是500ms，小于500会导致触发2次
-  Bind()
-  Debounce(500, {
+  @Bind()
+  @Debounce(500, {
     leading: true,
     trailing: false
   })
 
-  // not called
-  // function debouncePressEnter () {
-  //   onPressEnter(value)
-  // }
+  function debouncePressEnter () {
+    onPressEnter(value)
+  }
 
   delete restProps.defaultOpen // for rc-select not affected
   const inputClass = classNames(styles.input, { [styles.show]: searchMode })

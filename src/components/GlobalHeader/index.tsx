@@ -10,7 +10,7 @@ const styles = require('./index.less')
 export default function GlobalHeader (props: GlobalHeaderRightProps) {
 
   const { onCollapse, isMobile, collapsed, logo } = props
-  Debounce(600)
+  @Debounce(600)
   function triggerResizeEvent () {
     const event = document.createEvent('HTMLEvents')
     event.initEvent('resize', true, false)
@@ -22,7 +22,7 @@ export default function GlobalHeader (props: GlobalHeaderRightProps) {
     triggerResizeEvent()
   }
 
-  useEffect(() => triggerResizeEvent)
+  useEffect(() => triggerResizeEvent.cancel)
 
   return (
     <div className={styles.header}>

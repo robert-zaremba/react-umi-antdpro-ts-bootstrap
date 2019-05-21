@@ -11,8 +11,7 @@ interface HeaderDropdownProps {
 }
 
 export default function HeaderDropdown (props: HeaderDropdownProps) {
-  const { overlay } = props
   return (
-    <Dropdown overlay={classNames(styles.container, overlay)} {...props} />
+    <Dropdown overlay={classNames(styles.container, props.overlay)} {...props} />
   )
 }
