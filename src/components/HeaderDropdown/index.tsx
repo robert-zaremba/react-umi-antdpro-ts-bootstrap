@@ -7,7 +7,8 @@ const styles = require('./index.less')
 interface HeaderDropdownProps {
   children: Object
   overlay: Object
-  placement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter' | 'bottomRight'
+  placement?: 'topLeft' | 'topCenter' | 'topRight' | 'bottomLeft' | 'bottomCenter'
+          | 'bottomRight'
 }
 
 export default function HeaderDropdown (props: HeaderDropdownProps) {

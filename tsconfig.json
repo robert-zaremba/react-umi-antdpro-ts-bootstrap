@@ -15,6 +15,7 @@
     "skipLibCheck": true,
     "importHelpers": true,
     "strict": false,
+    "strictNullChecks": true,
     "noEmit": true,
     "removeComments": true,
     "jsx": "react",
