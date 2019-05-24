@@ -70,12 +70,12 @@ export default {
     getSetting (state) {
       const setting = { primaryColor: '', colorWeak: '' }
       const urlParams = new URL(window.location.href)
-      Object.keys(state).forEach(key => {
+      for (let key in Object.keys(state)) {
         if (urlParams.searchParams.has(key)) {
           const value = urlParams.searchParams.get(key)
           setting[key] = value === '1' ? true : value
         }
-      })
+      }
       const { primaryColor, colorWeak } = setting
       if (state.primaryColor !== primaryColor) {
         updateTheme(primaryColor)

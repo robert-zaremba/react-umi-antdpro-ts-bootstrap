@@ -80,7 +80,9 @@ export default function BaseMenu (props: GlobalHeaderRightProps) {
           }
           key={item.path}
         >
-        {/* To Verify: why parent isnt supplied here. funct def: getNavMenuItems(menusData, parent) */}
+          {/* To Verify: why parent isnt supplied here.
+              funct def: getNavMenuItems(menusData, parent)
+            */}
         {getNavMenuItems(item.children)}
         </SubMenu>
       )
@@ -89,8 +91,7 @@ export default function BaseMenu (props: GlobalHeaderRightProps) {
   }
 
   /**
-   * 判断是否是http链接.返回 Link 或 a
-   * Judge whether it is http link.return a or Link
+   * returns <a> element for http link, <Link> otherwise
    * @memberof SiderMenu
    */
   function getMenuItemPath (item) {
@@ -138,11 +139,9 @@ export default function BaseMenu (props: GlobalHeaderRightProps) {
   if (!selectedKeys.length && openKeys) {
     selectedKeys = [openKeys[openKeys.length - 1]]
   }
-  let props_tmp = {}
+  let propsTmp = {}
   if (openKeys && !collapsed) {
-    props_tmp = {
-      openKeys: openKeys.length === 0 ? [...selectedKeys] : openKeys
-    }
+    propsTmp = { openKeys: openKeys.length === 0 ? [...selectedKeys] : openKeys }
   }
   const cls = classNames(className, {
     'top-nav-menu': mode === 'horizontal'
@@ -157,7 +156,7 @@ export default function BaseMenu (props: GlobalHeaderRightProps) {
       selectedKeys={selectedKeys}
       style={style}
       className={cls}
-      {...props_tmp}
+      {...propsTmp}
     >
       {getNavMenuItems(menuData)}
     </Menu>

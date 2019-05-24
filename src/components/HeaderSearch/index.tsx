@@ -82,16 +82,18 @@ export default function HeaderSearch (props: HeaderSearchProps) {
     setSearchMode(open)
   }
 
+  function changeVisibility ({ propertyName }) {
+    if (propertyName === 'width' && !searchMode) {
+      // TO Verify: onVisibleChange not defined or passed as props
+      // onVisibleChange(searchMode)
+    }
+  }
+
   return (
     <span
       className={classNames(className, styles.headerSearch)}
       onClick={enterSearchMode}
-      onTransitionEnd={({ propertyName }) => {
-        if (propertyName === 'width' && !searchMode) {
-          // TO Verify: onVisibleChange not defined or passed as props
-          // onVisibleChange(searchMode)
-        }
-      }}
+      onTransitionEnd={changeVisibility}
     >
       <Icon type='search' key='Icon' />
       <AutoComplete
@@ -102,7 +104,7 @@ export default function HeaderSearch (props: HeaderSearchProps) {
         onChange={onChangeInput}
       >
         <Input
-          ref={ref => textInput}
+          ref={textInput}
           aria-label={placeholder}
           placeholder={placeholder}
           onKeyDown={onKeyDown}

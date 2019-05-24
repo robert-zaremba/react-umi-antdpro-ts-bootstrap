@@ -18,6 +18,9 @@
     https://palantir.github.io/tslint/usage/rule-flags/
     eg: // tslint:disable-next-line: no-useless-escape max-line-length
 
+    someCode();  // tslint:disable-line - Disables all rules for the current line
+
+
 ## eslint
 
 + Disabling rules

@@ -1,7 +1,6 @@
 {
   "defaultSeverity": "warning",
   "extends": ["tslint-config-standard", "tslint-react", "tslint-react-hooks", "tslint-react-a11y"],
-  // maybe add to extends: "tslint-config-prettier"
   "linterOptions": {
     "exclude": [
       "node_modules/**",
@@ -17,8 +16,10 @@
     "react-hooks-nesting": "error",
     "ter-indent": ["error", 2, {"FunctionDeclaration": {"parameters": "first"}}],
     "jsx-no-multiline-js": false,
+    "jsx-wrap-multiline": false,
 
-    "react-a11y-event-has-role": false
+    "react-a11y-event-has-role": false,
+    "react-a11y-anchors": false
 
     // "await-promise": [true, "Bluebird"],
     // "interface-name": false,

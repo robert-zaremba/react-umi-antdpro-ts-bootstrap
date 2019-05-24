@@ -10,7 +10,7 @@ import { MenuDataProps } from '@/components/SiderMenu/SiderMenu'
 
 const styles = require('./index.less')
 
-interface  GetNoticeDataProps {
+interface GetNoticeDataProps {
   avatar: string
   datetime: string
   id: string
@@ -147,6 +147,10 @@ function getUnreadData (noticeData) {
  return unreadMsg
 }
 
+function logSearch (value: string) {
+  console.log('search:', value)
+}
+
 export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
   const {
     currentUser,
@@ -159,7 +163,8 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
     dispatch
   } = props
 
-  function changeReadState (clickedItem) {
+  function changeReadState (clickedItem, tabProps) {
+    console.log('changed read state', clickedItem, tabProps) // eslint-disable-line
     dispatch({
       type: 'global/changeNoticeReadState',
       payload: clickedItem.id
@@ -203,12 +208,8 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
           formatMessage({ id: 'component.globalHeader.search.example2' }),
           formatMessage({ id: 'component.globalHeader.search.example3' })
         ]}
-        onSearch={value => {
-          console.log('input', value) // eslint-disable-line
-        }}
-        onPressEnter={value => {
-          console.log('enter', value) // eslint-disable-line
-        }}
+        onSearch={logSearch}
+        onPressEnter={logSearch}
       />
       <Tooltip title={formatMessage({ id: 'component.globalHeader.help' })}>
         <a
@@ -216,6 +217,7 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
           href='https://pro.ant.design/docs/getting-started'
           rel='noopener noreferrer'
           className={styles.action}
+          alt='question'
         >
           <Icon type='question-circle-o' />
         </a>
@@ -223,10 +225,7 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
       <NoticeIcon
         className={styles.action}
         count={currentUser.unreadCount}
-        onItemClick={(item, tabProps) => {
-          console.log(item, tabProps) // eslint-disable-line
-          changeReadState(item)
-        }}
+        onItemClick={changeReadState}
         locale={{
           emptyText: formatMessage({ id: 'component.noticeIcon.empty' }),
           clear: formatMessage({ id: 'component.noticeIcon.clear' })
