@@ -88,12 +88,12 @@ export default {
     },
     changeSetting (state, { payload }) {
       const urlParams = new URL(window.location.href)
-      Object.keys(defaultSettings).forEach(key => {
+      for (const key in Object.keys(defaultSettings)) {
         if (urlParams.searchParams.has(key)) {
           urlParams.searchParams.delete(key)
         }
-      })
-      Object.keys(payload).forEach(key => {
+      }
+      for (const key in Object.keys(payload)) {
         if (key === 'collapse') {
           return
         }
@@ -104,7 +104,7 @@ export default {
         if (defaultSettings[key] !== value) {
           urlParams.searchParams.set(key, value)
         }
-      })
+      }
       const { primaryColor, colorWeak, contentWidth } = payload
       if (state.primaryColor !== primaryColor) {
         updateTheme(primaryColor)

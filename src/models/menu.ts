@@ -73,13 +73,13 @@ const getBreadcrumbNameMap = menuData => {
   const routerMap = {}
 
   const flattenMenuData = data => {
-    data.forEach(menuItem => {
+    for (const menuItem in data) {
       if (menuItem.children) {
         flattenMenuData(menuItem.children)
       }
       // Reduce memory usage
       routerMap[menuItem.path] = menuItem
-    })
+    }
   }
   flattenMenuData(menuData)
   return routerMap

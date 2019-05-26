@@ -8,12 +8,12 @@ import { urlToList } from '@/utils/url'
  */
 export const getFlatMenuKeys = menuData => {
   let keys = []
-  menuData.forEach(item => {
+  for (const item in menuData) {
     keys.push(item.path)
     if (item.children) {
       keys = keys.concat(getFlatMenuKeys(item.children))
     }
-  })
+  }
   return keys
 }
 

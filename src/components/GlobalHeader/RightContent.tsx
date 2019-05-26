@@ -136,14 +136,14 @@ interface UnreadDataType {
 
 function getUnreadData (noticeData) {
  const unreadMsg: UnreadDataType = { notification: 0, message: 0, event: 0 }
- Object.entries(noticeData).forEach(([key, value]) => {
+ for (const [key, value] of Object.entries(noticeData)) {
    if (!unreadMsg[key]) {
      unreadMsg[key] = 0
    }
    if (Array.isArray(value)) {
      unreadMsg[key] = value.filter(item => !item.read).length
    }
- })
+ }
  return unreadMsg
 }
 
