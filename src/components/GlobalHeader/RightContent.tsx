@@ -136,7 +136,7 @@ interface UnreadDataType {
 
 function getUnreadData (noticeData) {
  const unreadMsg: UnreadDataType = { notification: 0, message: 0, event: 0 }
- for (const [key, value] of Object.entries(noticeData)) {
+ for (let [key, value] of Object.entries(noticeData)) {
    if (!unreadMsg[key]) {
      unreadMsg[key] = 0
    }

@@ -88,12 +88,12 @@ export default {
     },
     changeSetting (state, { payload }) {
       const urlParams = new URL(window.location.href)
-      for (const key in Object.keys(defaultSettings)) {
-        if (urlParams.searchParams.has(key)) {
-          urlParams.searchParams.delete(key)
+      for (let key in defaultSettings) {
+        if (urlParams.searchParams.has(defaultSettings[key])) {
+          urlParams.searchParams.delete(defaultSettings[key])
         }
       }
-      for (const key in Object.keys(payload)) {
+      for (let key in Object.keys(payload)) {
         if (key === 'collapse') {
           return
         }
