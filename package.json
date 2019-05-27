@@ -18,7 +18,7 @@
     "test:all": "node ./tests/run-tests.js",
     "test:watch": "jest --watch",
     "test:watch:utils": "jest --watch ./src/utils",
-    "typecheck:watch": "tsc --noEmit --watch",
+    "tscheck:watch": "tsc --noEmit --watch",
     "prettier": "node ./scripts/prettier.js"
   },
   "dependencies": {
@@ -63,8 +63,8 @@
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^4.0.0",
-    "husky": "^1.2.0",
-    "lint-staged": "^8.1.0",
+    "husky": "^2.3.0",
+    "lint-staged": "^8.1.5",
     "prettier": "1.15.2",
     "stylelint": "^9.8.0",
     "stylelint-config-prettier": "^4.0.0",
@@ -82,7 +82,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "tslint --fix",
+      "tslint --fix -p tsconfig.json",
       "git add"
     ],
     "*.{js,jsx}": [
@@ -96,7 +96,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn run lint-staged"
+      "pre-commit": "yarn run lint:ts"
     }
   },
   "browserslist": {

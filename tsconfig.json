@@ -33,18 +33,18 @@
       "@/*": ["./src/*"]
     },
 
-    "rootDirs": ["/src", "/test", "/mock","./typings"]
+    "rootDirs": ["./src", "./test", "./mock","./typings"]
   },
 
   "include": ["./src", "./mock"],
   "exclude": [
     "node_modules",
     "build",
-    "scripts",
+    "./scripts",
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts",
+    "./src/setupTests.ts",
     "**/*.private.tsx*"
   ]
 }
