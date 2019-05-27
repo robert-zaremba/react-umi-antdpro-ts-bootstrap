@@ -69,17 +69,17 @@ const filterMenuData = menuData => {
  * 获取面包屑映射
  * @param {Object} menuData 菜单配置
  */
-const getBreadcrumbNameMap = menuData => {
+function getBreadcrumbNameMap (menuData) {
   const routerMap = {}
 
-  const flattenMenuData = data => {
-    data.forEach(menuItem => {
+  function flattenMenuData (data) {
+    for (let menuItem in data) {
       if (menuItem.children) {
         flattenMenuData(menuItem.children)
       }
       // Reduce memory usage
       routerMap[menuItem.path] = menuItem
-    })
+    }
   }
   flattenMenuData(menuData)
   return routerMap
