@@ -1,11 +1,11 @@
 {
-  "defaultSeverity": "warning",
+  "defaultSeverity": "error",
   "extends": ["tslint-config-standard", "tslint-react", "tslint-react-hooks", "tslint-react-a11y"],
   "linterOptions": {
     "exclude": [
       "node_modules/**",
-      "src/**/*.js",
-      "src/serviceWorker.ts"
+      "mock/**/*.js",
+      "src/**/*.js"
     ]
   },
   "rules": {
@@ -19,7 +19,9 @@
     "jsx-wrap-multiline": false,
 
     "react-a11y-event-has-role": false,
-    "react-a11y-anchors": false
+    "react-a11y-anchors": false,
+
+    "ordered-imports": false
 
     // "await-promise": [true, "Bluebird"],
     // "interface-name": false,
