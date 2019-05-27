@@ -82,7 +82,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "tslint -p tsconfig.json",
+      "tslint --fix -p tsconfig.json",
       "git add"
     ],
     "*.{js,jsx}": [
