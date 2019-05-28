@@ -27,13 +27,16 @@ export interface MenuDataProps {
   locale: string
   name: string
   path: string
+  children: Array<MenuDataProps>
 }
+
+export declare type CollapseType = 'clickTrigger' | 'responsive'
 
 interface SiderMenuProps {
   menuData: Array<MenuDataProps>
   logo: string
   collapsed: boolean
-  onCollapse: Function
+  onCollapse: (collapsed: boolean, type: CollapseType) => void
   fixSiderbar: boolean
   theme: 'light' | 'dark'
   location: {

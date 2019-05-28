@@ -26,14 +26,8 @@ export default function HeaderSearch (props: HeaderSearchProps) {
   const textInput = createRef()
 
   useEffect(() => {
-    // this condition is never been hit. focus is not applicable to Object element
-    // if (searchMode) {
-    //   if (textInput.current) {
-    //     textInput.current.focus()
-    //   }
-    // }
-    return function cleanup () {
-      return clearTimeout
+    return () => {
+      clearTimeout
     }
   }, [searchMode])
 

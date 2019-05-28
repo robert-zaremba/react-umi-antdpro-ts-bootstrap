@@ -7,13 +7,12 @@ import Link from 'umi/link'
 const styles = require('./index.less')
 
 function TopNavHeader (props: GlobalHeaderRightProps) {
-  const [maxWidth, setMaxWidth] = useState(undefined)
+  const [maxWidth, setMaxWidth] = useState(0)
   const { theme, contentWidth, menuData, logo } = props
   const flatMenuKeys = getFlatMenuKeys(menuData)
 
   // getDerivedStateFromProps content
   let maxwidth = props.contentWidth === 'Fixed' ? 1200 : window.innerWidth
-  debugger
   setMaxWidth(maxwidth - (280 + 165 + 40))
   let contentWidthCls = contentWidth === 'Fixed' ? styles.wide : ''
   let main = createRef()

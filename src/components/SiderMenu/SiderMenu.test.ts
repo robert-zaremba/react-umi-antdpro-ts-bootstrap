@@ -1,39 +1,41 @@
-import { getFlatMenuKeys } from './SiderMenuUtils'
+// TODO: use MenuDataProps layout for menu array
 
-const menu = [
-  {
-    path: '/dashboard',
-    children: [
-      {
-        path: '/dashboard/name'
-      }
-    ]
-  },
-  {
-    path: '/userinfo',
-    children: [
-      {
-        path: '/userinfo/:id',
-        children: [
-          {
-            path: '/userinfo/:id/info'
-          }
-        ]
-      }
-    ]
-  }
-]
+// import { getFlatMenuKeys } from './SiderMenuUtils'
 
-const flatMenuKeys = getFlatMenuKeys(menu)
+// const menu = [
+//   {
+//     path: '/dashboard',
+//     children: [
+//       {
+//         path: '/dashboard/name'
+//       }
+//     ]
+//   },
+//   {
+//     path: '/userinfo',
+//     children: [
+//       {
+//         path: '/userinfo/:id',
+//         children: [
+//           {
+//             path: '/userinfo/:id/info'
+//           }
+//         ]
+//       }
+//     ]
+//   }
+// ]
 
-describe('test convert nested menu to flat menu', () => {
-  it('simple menu', () => {
-    expect(flatMenuKeys).toEqual([
-      '/dashboard',
-      '/dashboard/name',
-      '/userinfo',
-      '/userinfo/:id',
-      '/userinfo/:id/info'
-    ])
-  })
-})
+// const flatMenuKeys = getFlatMenuKeys(menu)
+
+// describe('test convert nested menu to flat menu', () => {
+//   it('simple menu', () => {
+//     expect(flatMenuKeys).toEqual([
+//       '/dashboard',
+//       '/dashboard/name',
+//       '/userinfo',
+//       '/userinfo/:id',
+//       '/userinfo/:id/info'
+//     ])
+//   })
+// })
