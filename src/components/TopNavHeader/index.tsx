@@ -19,7 +19,7 @@ function TopNavHeader (props: GlobalHeaderRightProps) {
 
   return (
     <div className={`${styles.head} ${theme === 'light' ? styles.light : ''}`}>
-      <div ref={main} className={`${styles.main} ${contentWidthCls}`}>
+      <div ref={ref => main} className={`${styles.main} ${contentWidthCls}`}>
         <div className={styles.left}>
           <div className={styles.logo} key='logo' id='logo'>
             <Link to='/'>

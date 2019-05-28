@@ -32,7 +32,7 @@ export interface MenuDataProps {
 
 export declare type CollapseType = 'clickTrigger' | 'responsive'
 
-interface SiderMenuProps {
+export interface SiderMenuProps {
   menuData: Array<MenuDataProps>
   logo: string
   collapsed: boolean
@@ -42,6 +42,8 @@ interface SiderMenuProps {
   location: {
     pathname: string
   }
+  flatMenuKeys: Array<string>
+  isMobile: boolean
 }
 
 function SiderMenu (props: SiderMenuProps) {
