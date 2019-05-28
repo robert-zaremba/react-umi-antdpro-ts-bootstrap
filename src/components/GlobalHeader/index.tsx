@@ -9,19 +9,22 @@ const styles = require('./index.less')
 export default function GlobalHeader (props: GlobalHeaderRightProps) {
 
   const { onCollapse, isMobile, collapsed, logo } = props
-  @Debounce(600)
-  function triggerResizeEvent () {
-    const event = document.createEvent('HTMLEvents')
-    event.initEvent('resize', true, false)
-    window.dispatchEvent(event)
-  }
-
   function toggle () {
     onCollapse(!collapsed)
-    triggerResizeEvent()
   }
 
-  useEffect(() => triggerResizeEvent.cancel)
+  // old useEffect; unsure of how to incorporate cancel element
+  // change made from this lint reference:
+  // https://stackblitz.com/edit/react-use-effect-hook-github
+  // useEffect(() => triggerResizeEvent.cancel)
+
+  useEffect(() => {
+    Debounce(() => {
+      const event = document.createEvent('HTMLEvents')
+      event.initEvent('resize', true, false)
+      window.dispatchEvent(event)
+      }, 600)
+  }, [collapsed])
 
   return (
     <div className={styles.header}>
