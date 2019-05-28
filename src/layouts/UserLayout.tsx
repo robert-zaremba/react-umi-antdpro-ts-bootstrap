@@ -1,9 +1,9 @@
+import SelectLang from '@/components/SelectLang'
+import { GlobalFooter } from 'ant-design-pro'
+import { Icon } from 'antd'
 import React, { Fragment } from 'react'
 import { formatMessage } from 'umi-plugin-locale'
 import Link from 'umi/link'
-import { Icon } from 'antd'
-import { GlobalFooter } from 'ant-design-pro'
-import SelectLang from '@/components/SelectLang'
 
 const styles = require('./UserLayout.less')
 const logo = require('../assets/logo.svg')

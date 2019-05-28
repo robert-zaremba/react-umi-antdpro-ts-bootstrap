@@ -1,10 +1,10 @@
-import React from 'react'
+import { GlobalHeaderRightProps } from '@/components/GlobalHeader/RightContent'
+import { isUrl, urlToList } from '@/utils/url'
+import { Icon, Menu } from 'antd'
 import classNames from 'classnames'
-import { Menu, Icon } from 'antd'
+import React from 'react'
 import Link from 'umi/link'
 import { getMenuMatches } from './SiderMenuUtils'
-import { isUrl, urlToList } from '@/utils/url'
-import { GlobalHeaderRightProps } from '@/components/GlobalHeader/RightContent'
 
 const styles = require('./index.less')
 

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
 import { Icon } from 'antd'
-import Link from 'umi/link'
 import Debounce from 'lodash-decorators/debounce'
+import React, { useEffect } from 'react'
+import Link from 'umi/link'
 import RightContent, { GlobalHeaderRightProps } from './RightContent'
 
 const styles = require('./index.less')

@@ -1,7 +1,7 @@
-import React from 'react'
-import { formatMessage, setLocale, getLocale } from 'umi-plugin-locale'
-import { Menu, Icon } from 'antd'
+import { Icon, Menu } from 'antd'
 import classNames from 'classnames'
+import React from 'react'
+import { formatMessage, getLocale, setLocale } from 'umi-plugin-locale'
 import HeaderDropdown from '../HeaderDropdown'
 
 const styles = require('./index.less')

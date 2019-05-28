@@ -1,10 +1,10 @@
-import React, { useState, Suspense } from 'react'
 import { Layout } from 'antd'
 import classNames from 'classnames'
+import React, { Suspense, useState } from 'react'
 import Link from 'umi/link'
 import PageLoading from '../PageLoading'
-import { getDefaultCollapsedSubMenus } from './SiderMenuUtils'
 import { MenuDataProps } from '../SiderMenu/SiderMenu'
+import { getDefaultCollapsedSubMenus } from './SiderMenuUtils'
 
 const styles = require('./index.less')
 

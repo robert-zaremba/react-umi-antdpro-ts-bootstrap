@@ -1,6 +1,6 @@
-import React from 'react'
 import { Dropdown } from 'antd'
 import classNames from 'classnames'
+import React from 'react'
 
 const styles = require('./index.less')
 

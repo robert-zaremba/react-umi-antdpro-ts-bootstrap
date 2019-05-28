@@ -1,9 +1,9 @@
 /**
  * wrapper: https://github.com/umijs/umi-request
  */
+import { notification } from 'antd'
 import { extend } from 'umi-request'
 import { ResponseError } from 'umi-request/types'
-import { notification } from 'antd'
 
 const codeMessage = {
   200: 'OK. ',

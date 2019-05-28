@@ -1,7 +1,7 @@
-import memoizeOne from 'memoize-one'
-import isEqual from 'lodash/isEqual'
-import { formatMessage } from 'umi-plugin-locale'
 import Authorized from '@/utils/Authorized'
+import isEqual from 'lodash/isEqual'
+import memoizeOne from 'memoize-one'
+import { formatMessage } from 'umi-plugin-locale'
 
 const { check } = Authorized
 

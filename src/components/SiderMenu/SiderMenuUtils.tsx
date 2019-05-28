@@ -1,5 +1,5 @@
-import pathToRegexp from 'path-to-regexp'
 import { urlToList } from '@/utils/url'
+import pathToRegexp from 'path-to-regexp'
 
 /**
  * Recursively flatten the data

@@ -1,8 +1,8 @@
-import React from 'react'
 import { Drawer } from 'antd'
+import React from 'react'
+import { MenuDataProps } from '../SiderMenu/SiderMenu'
 import SiderMenu from './SiderMenu'
 import { getFlatMenuKeys } from './SiderMenuUtils'
-import { MenuDataProps } from '../SiderMenu/SiderMenu'
 
 interface SiderMenuWrapperProps {
   isMobile: boolean

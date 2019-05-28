@@ -1,8 +1,8 @@
-import React, { useState, createRef } from 'react'
-import Link from 'umi/link'
 import RightContent, { GlobalHeaderRightProps } from '@/components/GlobalHeader/RightContent'
 import BaseMenu from '@/components/SiderMenu/BaseMenu'
 import { getFlatMenuKeys } from '@/components/SiderMenu/SiderMenuUtils'
+import React, { createRef, useState } from 'react'
+import Link from 'umi/link'
 
 const styles = require('./index.less')
 

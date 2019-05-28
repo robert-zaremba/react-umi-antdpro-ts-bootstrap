@@ -21,7 +21,7 @@
     "react-a11y-event-has-role": false,
     "react-a11y-anchors": false,
 
-    "ordered-imports": false
+    "ordered-imports": true
 
     // "await-promise": [true, "Bluebird"],
     // "interface-name": false,

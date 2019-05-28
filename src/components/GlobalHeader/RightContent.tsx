@@ -1,12 +1,12 @@
-import React from 'react'
-import { FormattedMessage, formatMessage } from 'umi-plugin-locale'
-import { Spin, Tag, Menu, Icon, Avatar, Tooltip } from 'antd'
-import groupBy from 'lodash/groupBy'
-import { NoticeIcon } from 'ant-design-pro'
-import HeaderSearch from '../HeaderSearch'
-import HeaderDropdown from '../HeaderDropdown'
-import SelectLang from '../SelectLang'
 import { MenuDataProps } from '@/components/SiderMenu/SiderMenu'
+import { NoticeIcon } from 'ant-design-pro'
+import { Avatar, Icon, Menu, Spin, Tag, Tooltip } from 'antd'
+import groupBy from 'lodash/groupBy'
+import React from 'react'
+import { formatMessage, FormattedMessage } from 'umi-plugin-locale'
+import HeaderDropdown from '../HeaderDropdown'
+import HeaderSearch from '../HeaderSearch'
+import SelectLang from '../SelectLang'
 
 const styles = require('./index.less')
 

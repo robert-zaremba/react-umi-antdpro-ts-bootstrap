@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { formatMessage } from 'umi-plugin-locale'
-import { Layout, message } from 'antd'
-import Animate from 'rc-animate'
-import { connect } from 'dva'
-import router from 'umi/router'
 import GlobalHeader from '@/components/GlobalHeader'
-import TopNavHeader from '@/components/TopNavHeader'
 import { GlobalHeaderRightProps } from '@/components/GlobalHeader/RightContent'
+import TopNavHeader from '@/components/TopNavHeader'
+import { Layout, message } from 'antd'
+import { connect } from 'dva'
+import Animate from 'rc-animate'
+import React, { useEffect, useState } from 'react'
+import { formatMessage } from 'umi-plugin-locale'
+import router from 'umi/router'
 
 const styles = require('./Header.less')
 
