@@ -1,10 +1,16 @@
 import { Icon } from 'antd'
-import Debounce from 'lodash-decorators/debounce'
+import Debounce from 'lodash/debounce'
 import React, { useEffect } from 'react'
 import Link from 'umi/link'
 import RightContent, { GlobalHeaderRightProps } from './RightContent'
 
 const styles = require('./index.less')
+
+function resizeHandler () {	
+  const event = document.createEvent('HTMLEvents')	
+  event.initEvent('resize', true, false)	
+  window.dispatchEvent(event)	
+}
 
 export default function GlobalHeader (props: GlobalHeaderRightProps) {
 
@@ -20,9 +26,7 @@ export default function GlobalHeader (props: GlobalHeaderRightProps) {
 
   useEffect(() => {
     Debounce(() => {
-      const event = document.createEvent('HTMLEvents')
-      event.initEvent('resize', true, false)
-      window.dispatchEvent(event)
+      resizeHandler()
       }, 600)
   }, [collapsed])
 
