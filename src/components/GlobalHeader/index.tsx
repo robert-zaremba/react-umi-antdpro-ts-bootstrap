@@ -6,10 +6,10 @@ import RightContent, { GlobalHeaderRightProps } from './RightContent'
 
 const styles = require('./index.less')
 
-function resizeHandler () {	
-  const event = document.createEvent('HTMLEvents')	
-  event.initEvent('resize', true, false)	
-  window.dispatchEvent(event)	
+function resizeHandler () {
+  const event = document.createEvent('HTMLEvents')
+  event.initEvent('resize', true, false)
+  window.dispatchEvent(event)
 }
 
 export default function GlobalHeader (props: GlobalHeaderRightProps) {
