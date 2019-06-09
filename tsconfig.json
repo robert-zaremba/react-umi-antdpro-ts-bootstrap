@@ -14,7 +14,7 @@
     ],
     "skipLibCheck": true,
     "importHelpers": true,
-    "strict": false,
+    "strict": true,
     "strictNullChecks": true,
     "noEmit": true,
     "removeComments": true,
@@ -28,7 +28,7 @@
     "noUnusedLocals": true,
     "allowJs": true,
     "experimentalDecorators": true,
-
+    "suppressImplicitAnyIndexErrors": true,
     "paths": {
       "@/*": ["./src/*"]
     },
