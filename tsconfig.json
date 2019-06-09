@@ -44,7 +44,8 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "./src/setupTests.ts",
-    "**/*.private.tsx*"
+    "src/setupTests.ts",
+    "**/*.private.tsx*",
+    "src/models"
   ]
 }

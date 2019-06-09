@@ -1,7 +1,7 @@
 import { AutoComplete, Icon, Input } from 'antd'
 import classNames from 'classnames'
-import Bind from 'lodash-decorators/bind'
-import Debounce from 'lodash-decorators/debounce'
+import Bind from 'lodash/bind'
+import Debounce from 'lodash/debounce'
 import React, { createRef, useEffect, useState } from 'react'
 
 const styles = require('./index.less')
@@ -23,25 +23,24 @@ export default function HeaderSearch (props: HeaderSearchProps) {
   const [value, setValue] = useState('')
   // TO Verify: onVisibleChange not defined or passed as props
   const { className, placeholder, open, onChange, onPressEnter, ...restProps } = props
-  const textInput = createRef()
+  // fix from: https://medium.com/@martin_hotell/react-refs-with-typescript-a32d56c4d315
+  const textInput = createRef<Input>()
 
   useEffect(() => {
-    // this condition is never been hit. focus is not applicable to Object element
-    // if (searchMode) {
-    //   if (textInput.current) {
-    //     textInput.current.focus()
-    //   }
-    // }
-    return function cleanup () {
-      return clearTimeout
+    Bind(() => {
+      Debounce(() => {
+        leading: true
+        trailing: false
+      }, 600)
+    }, 100)
+    return () => {
+      clearTimeout
     }
   }, [searchMode])
 
   function onKeyDown (e) {
     if (e.key === 'Enter') {
-      setTimeout(() => {
-        onPressEnter(value) // Fix duplicate onPressEnter
-      }, 0)
+      onPressEnter(value) // Fix duplicate onPressEnter
     }
   }
 
@@ -61,17 +60,6 @@ export default function HeaderSearch (props: HeaderSearchProps) {
   function leaveSearchMode () {
     setSearchMode(false)
     setValue('')
-  }
-
-  // NOTE: 不能小于500，如果长按某键，第一次触发auto repeat的间隔是500ms，小于500会导致触发2次
-  @Bind()
-  @Debounce(500, {
-    leading: true,
-    trailing: false
-  })
-
-  function debouncePressEnter () {
-    onPressEnter(value)
   }
 
   delete restProps.defaultOpen // for rc-select not affected

@@ -47,7 +47,7 @@ const query = {
 }
 
 interface BasicLayoutProps {
-  navTheme: string
+  navTheme: 'light' | 'dark'
   layout: string
   children: Object
   location: {
@@ -65,7 +65,7 @@ interface BasicLayoutProps {
   fixSiderbar: boolean
   collapsed: boolean
   logo: string
-  theme: string
+  theme: 'light' | 'dark'
 }
 
 function getRouterAuthority (pathname: string, routes) {

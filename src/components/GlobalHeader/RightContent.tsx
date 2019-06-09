@@ -56,7 +56,7 @@ export interface ClickParam {
 }
 
 interface HeaderSettingProps {
-  navTheme: string
+  navTheme: 'light' | 'dark'
   layout: string
   fixedHeader: boolean
 }
@@ -216,9 +216,7 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
           target='_blank'
           href='https://pro.ant.design/docs/getting-started'
           rel='noopener noreferrer'
-          className={styles.action}
-          alt='question'
-        >
+          className={styles.action}>
           <Icon type='question-circle-o' />
         </a>
       </Tooltip>

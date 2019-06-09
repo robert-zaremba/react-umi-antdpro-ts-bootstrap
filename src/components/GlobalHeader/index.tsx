@@ -1,27 +1,34 @@
 import { Icon } from 'antd'
-import Debounce from 'lodash-decorators/debounce'
+import Debounce from 'lodash/debounce'
 import React, { useEffect } from 'react'
 import Link from 'umi/link'
 import RightContent, { GlobalHeaderRightProps } from './RightContent'
 
 const styles = require('./index.less')
 
+function resizeHandler () {
+  const event = document.createEvent('HTMLEvents')
+  event.initEvent('resize', true, false)
+  window.dispatchEvent(event)
+}
+
 export default function GlobalHeader (props: GlobalHeaderRightProps) {
 
   const { onCollapse, isMobile, collapsed, logo } = props
-  @Debounce(600)
-  function triggerResizeEvent () {
-    const event = document.createEvent('HTMLEvents')
-    event.initEvent('resize', true, false)
-    window.dispatchEvent(event)
-  }
-
   function toggle () {
     onCollapse(!collapsed)
-    triggerResizeEvent()
   }
 
-  useEffect(() => triggerResizeEvent.cancel)
+  // old useEffect; unsure of how to incorporate cancel element
+  // change made from this lint reference:
+  // https://stackblitz.com/edit/react-use-effect-hook-github
+  // useEffect(() => triggerResizeEvent.cancel)
+
+  useEffect(() => {
+    Debounce(() => {
+      resizeHandler()
+      }, 600)
+  }, [collapsed])
 
   return (
     <div className={styles.header}>
