@@ -15,11 +15,11 @@ function TopNavHeader (props: GlobalHeaderRightProps) {
   let maxwidth = props.contentWidth === 'Fixed' ? 1200 : window.innerWidth
   setMaxWidth(maxwidth - (280 + 165 + 40))
   let contentWidthCls = contentWidth === 'Fixed' ? styles.wide : ''
-  let main = createRef()
+  let main = createRef<HTMLDivElement>()
 
   return (
     <div className={`${styles.head} ${theme === 'light' ? styles.light : ''}`}>
-      <div ref={ref => main} className={`${styles.main} ${contentWidthCls}`}>
+      <div ref={main} className={`${styles.main} ${contentWidthCls}`}>
         <div className={styles.left}>
           <div className={styles.logo} key='logo' id='logo'>
             <Link to='/'>

@@ -23,7 +23,8 @@ export default function HeaderSearch (props: HeaderSearchProps) {
   const [value, setValue] = useState('')
   // TO Verify: onVisibleChange not defined or passed as props
   const { className, placeholder, open, onChange, onPressEnter, ...restProps } = props
-  const textInput = createRef()
+  // fix from: https://medium.com/@martin_hotell/react-refs-with-typescript-a32d56c4d315
+  const textInput = createRef<Input>()
 
   useEffect(() => {
     Bind(() => {
@@ -91,7 +92,7 @@ export default function HeaderSearch (props: HeaderSearchProps) {
         onChange={onChangeInput}
       >
         <Input
-          ref={ref => textInput}
+          ref={textInput}
           aria-label={placeholder}
           placeholder={placeholder}
           onKeyDown={onKeyDown}
