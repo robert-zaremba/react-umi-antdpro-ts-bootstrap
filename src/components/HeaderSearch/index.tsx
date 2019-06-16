@@ -3,9 +3,9 @@ import classNames from 'classnames'
 import Bind from 'lodash/bind'
 import Debounce from 'lodash/debounce'
 import React, { createRef, useEffect, useState } from 'react'
-
-const styles = require('./index.less')
-
+import styles from './index.less'
+// const styles = require('./index.less')
+console.log(styles)
 interface HeaderSearchProps {
   placeholder?: string
   dataSource?: string[]
