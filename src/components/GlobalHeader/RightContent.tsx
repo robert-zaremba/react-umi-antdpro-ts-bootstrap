@@ -21,6 +21,16 @@ interface GetNoticeDataProps {
   status: string
 }
 
+interface TabProps {
+  count: number
+  emptyImage: string
+  emptyText: string
+  list: Array<GetNoticeDataProps>
+  name: string
+  placeholder: Object
+  title: string
+}
+
 interface ValueProps {
   key: string
   label: string
@@ -31,7 +41,7 @@ interface GeographicProps {
   city: ValueProps
 }
 
-interface CurrentUserProps {
+ interface CurrentUserProps {
   address: string
   avatar: string
   country: string
@@ -170,7 +180,7 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
     dispatch
   } = props
 
-  function changeReadState (clickedItem, tabProps) {
+  function changeReadState (clickedItem: GetNoticeDataProps, tabProps: TabProps) {
     console.log('changed read state', clickedItem, tabProps) // eslint-disable-line
     dispatch({
       type: 'global/changeNoticeReadState',
