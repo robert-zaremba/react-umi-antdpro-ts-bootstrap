@@ -1,4 +1,4 @@
-import { MenuDataProps } from '@/components/SiderMenu/SiderMenu'
+import { MenuDataProps, CollapseType } from '@/components/SiderMenu/SiderMenu'
 import { NoticeIcon } from 'ant-design-pro'
 import { Avatar, Icon, Menu, Spin, Tag, Tooltip } from 'antd'
 import groupBy from 'lodash/groupBy'
@@ -89,7 +89,7 @@ export interface GlobalHeaderRightProps {
   setting: HeaderSettingProps
   autoHideHeader: boolean
   mode: 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline'
-  onCollapse: Function
+  onCollapse: (collapsed: boolean, type: CollapseType) => void
   openKeys: Array<Object>
   location: { pathname: string }
   className: string
@@ -106,6 +106,7 @@ export interface GlobalHeaderRightProps {
     [key: string]: string
   }
   onOpenChange: Function
+  fixSiderbar: boolean
 }
 
 interface NoticeDataProps {

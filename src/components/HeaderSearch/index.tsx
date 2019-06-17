@@ -6,13 +6,14 @@ import React, { createRef, useEffect, useState } from 'react'
 
 const styles = require('./index.less')
 
+declare type SelectValue = string | string[]
 interface HeaderSearchProps {
   placeholder?: string
   dataSource?: string[]
   defaultOpen?: boolean
   open?: boolean
   onSearch?: (value: string) => void
-  onChange?: (value: string) => void
+  onChange?: (value: SelectValue) => void
   onVisibleChange?: (visible: boolean) => void
   onPressEnter?: (value: string) => void
   className?: string
@@ -38,20 +39,20 @@ export default function HeaderSearch (props: HeaderSearchProps) {
     }
   }, [searchMode])
 
-  function onKeyDown (e) {
-    if (e.key === 'Enter') {
-      onPressEnter(value) // Fix duplicate onPressEnter
+  function onKeyDown (event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      // onPressEnter(value) // Fix duplicate onPressEnter
     }
   }
 
-  function onChangeInput (value) {
+  function onChangeInput (value: SelectValue) {
     setValue(value)
     if (onChange) {
       onChange(value)
     }
   }
 
-  function enterSearchMode (event) {
+  function enterSearchMode (event: MouseEvent) {
     // TO Verify: onVisibleChange not defined or passed as props
     // onVisibleChange(true)
     setSearchMode(true)
@@ -70,8 +71,12 @@ export default function HeaderSearch (props: HeaderSearchProps) {
     setSearchMode(open)
   }
 
-  function changeVisibility ({ propertyName }) {
-    if (propertyName === 'width' && !searchMode) {
+  interface VisibilityProps {
+    propertyName: string
+  }
+
+  function changeVisibility (visibility: VisibilityProps) {
+    if (visibility.propertyName === 'width' && !searchMode) {
       // TO Verify: onVisibleChange not defined or passed as props
       // onVisibleChange(searchMode)
     }

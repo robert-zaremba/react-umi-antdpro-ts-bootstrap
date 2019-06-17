@@ -6,8 +6,16 @@ import HeaderDropdown from '../HeaderDropdown'
 
 const styles = require('./index.less')
 
-function changeLang ({ key }) {
-  setLocale(key)
+interface ChangeLangProps {
+  key: string
+}
+
+interface SelectLangProps {
+  className?: string
+}
+
+function changeLang ( lang: ChangeLangProps) {
+  setLocale(lang.key)
 }
 
 const selectedLang = getLocale()
@@ -41,7 +49,7 @@ const langMenu = (
   </Menu>
 )
 
-export default function SelectLang (props) {
+export default function SelectLang (props: SelectLangProps) {
   return (
     <HeaderDropdown overlay={langMenu} placement='bottomRight'>
       <span className={classNames(styles.dropDown, props.className)}>
