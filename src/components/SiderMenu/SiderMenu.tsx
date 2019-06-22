@@ -2,13 +2,14 @@ import { Layout } from 'antd'
 import classNames from 'classnames'
 import React, { Suspense, useState } from 'react'
 import Link from 'umi/link'
+import { GlobalHeaderRightProps } from '../GlobalHeader/RightContent'
 import PageLoading from '../PageLoading'
 import { MenuDataProps } from '../SiderMenu/SiderMenu'
 import { getDefaultCollapsedSubMenus } from './SiderMenuUtils'
 
 const styles = require('./index.less')
 
-function isMainMenu (menu, key) {
+function isMainMenu (menu, key: string) {
   if (!key) return false
   for (let item of menu) {
     if (item.key === key || item.path === key) return true
@@ -28,6 +29,7 @@ export interface MenuDataProps {
   name: string
   path: string
   children: Array<MenuDataProps>
+  hideInMenu: boolean
 }
 
 export declare type CollapseType = 'clickTrigger' | 'responsive'
@@ -37,7 +39,6 @@ export interface SiderMenuProps {
   logo: string
   collapsed: boolean
   onCollapse: (collapsed: boolean, type: CollapseType) => void
-  fixSiderbar: boolean
   theme: 'light' | 'dark'
   location: {
     pathname: string
@@ -46,7 +47,7 @@ export interface SiderMenuProps {
   isMobile: boolean
 }
 
-function SiderMenu (props: SiderMenuProps) {
+function SiderMenu (props: GlobalHeaderRightProps) {
   const [openKeys, setOpenKeys] = useState(getDefaultCollapsedSubMenus(props))
   const [pathname, setPathName] = useState(props.location.pathname)
   const { menuData, logo, collapsed, onCollapse, fixSiderbar, theme } = props

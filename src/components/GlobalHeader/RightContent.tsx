@@ -1,4 +1,4 @@
-import { MenuDataProps } from '@/components/SiderMenu/SiderMenu'
+import { CollapseType, MenuDataProps } from '@/components/SiderMenu/SiderMenu'
 import { NoticeIcon } from 'ant-design-pro'
 import { Avatar, Icon, Menu, Spin, Tag, Tooltip } from 'antd'
 import groupBy from 'lodash/groupBy'
@@ -19,6 +19,16 @@ interface GetNoticeDataProps {
   key: string
   extra: Object
   status: string
+}
+
+interface TabProps {
+  count: number
+  emptyImage: string
+  emptyText: string
+  list: Array<GetNoticeDataProps>
+  name: string
+  placeholder: Object
+  title: string
 }
 
 interface ValueProps {
@@ -79,7 +89,7 @@ export interface GlobalHeaderRightProps {
   setting: HeaderSettingProps
   autoHideHeader: boolean
   mode: 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline'
-  onCollapse: Function
+  onCollapse: (collapsed: boolean, type: CollapseType) => void
   openKeys: Array<Object>
   location: { pathname: string }
   className: string
@@ -96,9 +106,16 @@ export interface GlobalHeaderRightProps {
     [key: string]: string
   }
   onOpenChange: Function
+  fixSiderbar: boolean
 }
 
-function getNoticeData (notices) {
+interface NoticeDataProps {
+  event: Array<GetNoticeDataProps>
+  message: Array<GetNoticeDataProps>
+  notification: Array<GetNoticeDataProps>
+}
+
+function getNoticeData (notices: Array<GetNoticeDataProps>) {
  if (notices.length === 0) {
    return {}
  }
@@ -110,6 +127,7 @@ function getNoticeData (notices) {
    if (notice.id) {
      notice.key = notice.id
    }
+  //  TODO: check the functionality here
    if (notice.extra && notice.status) {
      const color = {
        todo: '',
@@ -134,7 +152,7 @@ interface UnreadDataType {
   event: number
 }
 
-function getUnreadData (noticeData) {
+function getUnreadData (noticeData: NoticeDataProps) {
  const unreadMsg: UnreadDataType = { notification: 0, message: 0, event: 0 }
  for (let [key, value] of Object.entries(noticeData)) {
    if (!unreadMsg[key]) {
@@ -163,7 +181,7 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
     dispatch
   } = props
 
-  function changeReadState (clickedItem, tabProps) {
+  function changeReadState (clickedItem: GetNoticeDataProps, tabProps: TabProps) {
     console.log('changed read state', clickedItem, tabProps) // eslint-disable-line
     dispatch({
       type: 'global/changeNoticeReadState',
@@ -198,6 +216,10 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
   if (theme === 'dark') {
     className = `${styles.right}  ${styles.dark}`
   }
+  // tslint:disable-next-line:max-line-length
+  let elem = <a target='_blank' href='https://pro.ant.design/docs/getting-started' rel='noopener noreferrer' className={styles.action}>
+          <Icon type='question-circle-o' />
+        </a>
   return (
     <div className={className}>
       <HeaderSearch
@@ -212,13 +234,7 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
         onPressEnter={logSearch}
       />
       <Tooltip title={formatMessage({ id: 'component.globalHeader.help' })}>
-        <a
-          target='_blank'
-          href='https://pro.ant.design/docs/getting-started'
-          rel='noopener noreferrer'
-          className={styles.action}>
-          <Icon type='question-circle-o' />
-        </a>
+      {elem}
       </Tooltip>
       <NoticeIcon
         className={styles.action}

@@ -1,6 +1,7 @@
 import { MenuDataProps } from '@/components/SiderMenu/SiderMenu'
 import { urlToList } from '@/utils/url'
 import pathToRegexp from 'path-to-regexp'
+import { GlobalHeaderRightProps } from './../GlobalHeader/RightContent'
 
 /**
  * Recursively flatten the data
@@ -18,7 +19,7 @@ export const getFlatMenuKeys = (menuData: Array<MenuDataProps>) => {
   return keys
 }
 
-export const getMenuMatches = (flatMenuKeys, path) =>
+export const getMenuMatches = (flatMenuKeys: Array<string>, path: string) =>
   flatMenuKeys.filter(item => {
     if (item) {
       return pathToRegexp(item).test(path)
@@ -29,7 +30,7 @@ export const getMenuMatches = (flatMenuKeys, path) =>
  * 获得菜单子节点
  * @memberof SiderMenu
  */
-export const getDefaultCollapsedSubMenus = props => {
+export const getDefaultCollapsedSubMenus = (props: GlobalHeaderRightProps) => {
   const {
     location: { pathname },
     flatMenuKeys

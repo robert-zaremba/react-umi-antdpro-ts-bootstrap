@@ -35,7 +35,7 @@ function HeaderView (props: GlobalHeaderRightProps) {
     return collapsed ? 'calc(100% - 80px)' : 'calc(100% - 256px)'
   }
 
-  function handleNoticeClear (type) {
+  function handleNoticeClear (type: string) {
     message.success(
       `${formatMessage({ id: 'component.noticeIcon.cleared' })} ${formatMessage({
         id: `component.globalHeader.${type}`

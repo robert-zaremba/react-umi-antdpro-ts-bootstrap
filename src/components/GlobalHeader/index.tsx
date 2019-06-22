@@ -1,4 +1,4 @@
-import { Icon } from 'antd'
+import { Icon, IconProps } from 'antd'
 import Debounce from 'lodash/debounce'
 import React, { useEffect } from 'react'
 import Link from 'umi/link'

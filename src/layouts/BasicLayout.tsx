@@ -46,6 +46,13 @@ const query = {
   }
 }
 
+interface RouteProps {
+  exact: boolean
+  path: string
+  redirect: string
+  routes: Array<RouteProps>
+}
+
 interface BasicLayoutProps {
   navTheme: 'light' | 'dark'
   layout: string
@@ -57,7 +64,7 @@ interface BasicLayoutProps {
   menuData: Array<MenuDataProps>
   breadcrumbNameMap: Array<pathToRegexp.Key>
   route: {
-    routes: Object
+    routes: RouteProps
     authority: string
   }
   fixedHeader: boolean
@@ -68,14 +75,17 @@ interface BasicLayoutProps {
   theme: 'light' | 'dark'
 }
 
-function getRouterAuthority (pathname: string, routes) {
+function getRouterAuthority (pathname: string, routes: RouteProps) {
   let routeAuthority = ['noAuthority']
-  const assignAuthority = (key: string, _routes) => {
-    for (let r of _routes) {
-      if (r.path === key) {
-        routeAuthority = r.authority
-      } else if (r.routes) {
-        routeAuthority = assignAuthority(key, r.routes)
+  const assignAuthority = (key: string, _routes: RouteProps) => {
+    if (_routes) {
+      // @ts-ignore: circular iteration here. Added check ifEmpty on top
+      for (let r of _routes) {
+        if (r.path === key) {
+          routeAuthority = r.authority
+        } else if (r.routes) {
+          routeAuthority = assignAuthority(key, r.routes)
+        }
       }
     }
     return routeAuthority
@@ -108,12 +118,19 @@ const getPageTitle = memoizeOne(
     })
 
     return `${pageName}`
-  })
+})
 
-function getLayoutStyle ({ fixSiderbar, isMobile, collapsed, layout }) {
-  if (fixSiderbar && layout !== 'topmenu' && !isMobile) {
+interface LayoutStyleProps {
+  fixSiderbar: boolean
+  isMobile: boolean
+  collapsed: boolean
+  layout: string
+}
+
+function getLayoutStyle (layoutstyle: LayoutStyleProps) {
+  if (layoutstyle.fixSiderbar && layoutstyle.layout !== 'topmenu' && !layoutstyle.isMobile) {
     return {
-      paddingLeft: collapsed ? '80px' : '256px'
+      paddingLeft: layoutstyle.collapsed ? '80px' : '256px'
     }
   }
   return null
@@ -204,7 +221,7 @@ export default connect(({ global, setting, menu }) => ({
   menuData: menu.menuData,
   breadcrumbNameMap: menu.breadcrumbNameMap,
   ...setting
-}))(props => (
+}))((props: BasicLayoutProps) => (
   <Media query='(max-width: 599px)'>
     {isMobile => <BasicLayout {...props} isMobile={isMobile} />}
   </Media>
