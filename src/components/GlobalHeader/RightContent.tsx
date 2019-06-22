@@ -1,4 +1,4 @@
-import { MenuDataProps, CollapseType } from '@/components/SiderMenu/SiderMenu'
+import { CollapseType, MenuDataProps } from '@/components/SiderMenu/SiderMenu'
 import { NoticeIcon } from 'ant-design-pro'
 import { Avatar, Icon, Menu, Spin, Tag, Tooltip } from 'antd'
 import groupBy from 'lodash/groupBy'
@@ -41,7 +41,7 @@ interface GeographicProps {
   city: ValueProps
 }
 
- interface CurrentUserProps {
+interface CurrentUserProps {
   address: string
   avatar: string
   country: string
@@ -127,7 +127,7 @@ function getNoticeData (notices: Array<GetNoticeDataProps>) {
    if (notice.id) {
      notice.key = notice.id
    }
-  //  TODO: check the functionality here 
+  //  TODO: check the functionality here
    if (notice.extra && notice.status) {
      const color = {
        todo: '',
@@ -216,6 +216,10 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
   if (theme === 'dark') {
     className = `${styles.right}  ${styles.dark}`
   }
+  // tslint:disable-next-line:max-line-length
+  let elem = <a target='_blank' href='https://pro.ant.design/docs/getting-started' rel='noopener noreferrer' className={styles.action}>
+          <Icon type='question-circle-o' />
+        </a>
   return (
     <div className={className}>
       <HeaderSearch
@@ -230,13 +234,7 @@ export default function GlobalHeaderRight (props: GlobalHeaderRightProps) {
         onPressEnter={logSearch}
       />
       <Tooltip title={formatMessage({ id: 'component.globalHeader.help' })}>
-        <a
-          target='_blank'
-          href='https://pro.ant.design/docs/getting-started'
-          rel='noopener noreferrer'
-          className={styles.action}>
-          <Icon type='question-circle-o' />
-        </a>
+      {elem}
       </Tooltip>
       <NoticeIcon
         className={styles.action}

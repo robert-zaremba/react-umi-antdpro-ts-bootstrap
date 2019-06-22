@@ -46,7 +46,6 @@ const query = {
   }
 }
 
-
 interface RouteProps {
   exact: boolean
   path: string
@@ -79,9 +78,9 @@ interface BasicLayoutProps {
 function getRouterAuthority (pathname: string, routes: RouteProps) {
   let routeAuthority = ['noAuthority']
   const assignAuthority = (key: string, _routes: RouteProps) => {
-    if(_routes){
+    if (_routes) {
       // @ts-ignore: circular iteration here. Added check ifEmpty on top
-      for (let r of _routes){
+      for (let r of _routes) {
         if (r.path === key) {
           routeAuthority = r.authority
         } else if (r.routes) {

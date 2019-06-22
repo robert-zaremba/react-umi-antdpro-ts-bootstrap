@@ -1,11 +1,11 @@
 import { GlobalHeaderRightProps } from '@/components/GlobalHeader/RightContent'
+import { MenuDataProps } from '@/components/SiderMenu/SiderMenu'
 import { isUrl, urlToList } from '@/utils/url'
-import { Icon, Menu } from 'antd'
+import { Menu } from 'antd'
 import classNames from 'classnames'
 import React from 'react'
 import Link from 'umi/link'
 import { getMenuMatches } from './SiderMenuUtils'
-import { MenuDataProps } from '@/components/SiderMenu/SiderMenu'
 
 const styles = require('./index.less')
 
@@ -16,11 +16,11 @@ const { SubMenu } = Menu
 //   icon: 'http://demo.com/icon.png',
 //   icon: <Icon type="setting" />,
 const getIcon = (icon: string) => {
-  if (typeof icon === 'string' && isUrl(icon)) {
+  if (isUrl(icon)) {
     return <img src={icon} alt='icon' className={styles.icon} />
-  }
-  if (typeof icon === 'string') {
-    return <Icon type={icon} />
+  } else {
+    // the Icon type here doesnt have a constructor to supply types
+    // return <Icon type={icon} />
   }
   return icon
 }
@@ -50,9 +50,11 @@ export default function BaseMenu (props: GlobalHeaderRightProps) {
       return []
     }
     let returnData = []
+    let entry
     for (let item in menusData) {
-      if(menusData[item].name && menusData[item].hideInMenu){
-        getSubMenuOrItem(item, parent) && returnData.push(getSubMenuOrItem(item, parent))
+      if (menusData[item].name && menusData[item].hideInMenu) {
+        entry = getSubMenuOrItem(item, parent)
+        entry && returnData.push(entry)
       }
     }
     return returnData

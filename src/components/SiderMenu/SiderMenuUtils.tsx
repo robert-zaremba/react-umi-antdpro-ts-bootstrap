@@ -1,7 +1,7 @@
 import { MenuDataProps } from '@/components/SiderMenu/SiderMenu'
 import { urlToList } from '@/utils/url'
 import pathToRegexp from 'path-to-regexp'
-import {GlobalHeaderRightProps} from './../GlobalHeader/RightContent'
+import { GlobalHeaderRightProps } from './../GlobalHeader/RightContent'
 
 /**
  * Recursively flatten the data

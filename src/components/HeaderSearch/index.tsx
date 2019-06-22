@@ -29,13 +29,14 @@ export default function HeaderSearch (props: HeaderSearchProps) {
 
   useEffect(() => {
     Bind(() => {
-      Debounce(() => {
-        leading: true
-        trailing: false
-      }, 600)
+      // these states arent set or used
+      // Debounce(() => {
+      //   leading: true
+      //   trailing: false
+      // }, 600)
     }, 100)
     return () => {
-      clearTimeout
+      // clearTimeout(100)
     }
   }, [searchMode])
 

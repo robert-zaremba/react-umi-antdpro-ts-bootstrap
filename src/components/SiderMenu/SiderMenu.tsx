@@ -2,10 +2,10 @@ import { Layout } from 'antd'
 import classNames from 'classnames'
 import React, { Suspense, useState } from 'react'
 import Link from 'umi/link'
+import { GlobalHeaderRightProps } from '../GlobalHeader/RightContent'
 import PageLoading from '../PageLoading'
 import { MenuDataProps } from '../SiderMenu/SiderMenu'
 import { getDefaultCollapsedSubMenus } from './SiderMenuUtils'
-import { GlobalHeaderRightProps } from '../GlobalHeader/RightContent';
 
 const styles = require('./index.less')
 

@@ -14,7 +14,7 @@ interface SelectLangProps {
   className?: string
 }
 
-function changeLang ( lang: ChangeLangProps) {
+function changeLang (lang: ChangeLangProps) {
   setLocale(lang.key)
 }
 
